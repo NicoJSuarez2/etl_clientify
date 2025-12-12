@@ -78,7 +78,7 @@ if __name__ == "__main__":
 
     if modo == "1":
         run_extract(logger, full_load=False)
-        run_extract_times(logger)
+        run_transform(logger)
 
     elif modo == "2":
         run_extract(logger, full_load=False)

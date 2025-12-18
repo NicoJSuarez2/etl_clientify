@@ -3,6 +3,7 @@ import pandas as pd
 from pathlib import Path
 from pathlib import Path
 import logging
+from typing import Optional, Tuple
 
 
 def config_logger():
@@ -182,21 +183,48 @@ def desanidar_columna(df: pd.DataFrame, columna: str) -> pd.DataFrame:
     return df_desanidado
 
 
-def custom_columns(logger, df: pd.DataFrame, nombre: str) -> pd.DataFrame:
-    """Aplica limpiezas específicas según el name de DataFrame."""
+
+def custom_columns(
+    logger,
+    df: pd.DataFrame,
+    nombre: str
+) -> Tuple[pd.DataFrame, Optional[pd.DataFrame]]:
+    """
+    Aplica limpiezas específicas según el nombre del DataFrame.
+
+    Retorna:
+    - df_sinanidados: DataFrame principal
+    - df_desanidado: DataFrame secundario (o None)
+    """
+
+    # 🔹 Inicialización por defecto (evita variables no definidas)
+    df_sinanidados = df
+    df_desanidado = None
+
     if nombre == "deals" and "custom_fields" in df.columns:
+        logger.info("[deals] Procesando columna custom_fields")
+
+        # Tabla principal sin custom_fields
         df_sinanidados = df.drop(columns=["custom_fields"])
         guardar_parquet(logger, df_sinanidados, nombre)
-        # Aquí creamos deals_custom
+
+        # Tabla secundaria: deals_custom
         df_base = df[["id", "custom_fields"]]
         desanidado = desanidar_columna(df_base, "custom_fields")
-        # Solo tomar las columnas necesarias
-        df_desanidado = pd.concat([df[["id"]], desanidado], axis=1)
+
+        df_desanidado = pd.concat(
+            [df[["id"]], desanidado],
+            axis=1
+        )
+
+        # Eliminar filas completamente nulas (excepto id)
         df_desanidado = df_desanidado[
             ~(df_desanidado.drop(columns=["id"]).isna()).all(axis=1)
         ]
 
-        return df_sinanidados, df_desanidado
+        logger.info(
+            f"[deals] Filas generadas en deals_custom: {len(df_desanidado)}"
+        )
 
     return df_sinanidados, df_desanidado
 

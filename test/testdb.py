@@ -2,10 +2,10 @@ import pyodbc
 
 conn = pyodbc.connect(
     "DRIVER={ODBC Driver 18 for SQL Server};"
-    "SERVER=localhost,1433;"
+    "SERVER=72.61.70.104,1433;"
     "DATABASE=master;"
-    "UID=x;"
-    "PWD=x;"
+    "UID=sa;"
+    "PWD=TuPasswordFuerte123!;"
     "Encrypt=no;"
 )
 

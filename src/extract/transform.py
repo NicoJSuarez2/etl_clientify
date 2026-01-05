@@ -3,7 +3,7 @@ import pandas as pd
 import ast
 
 
-def normalize_dates(df: pd.DataFrame, date_columns: list = None) -> pd.DataFrame:
+def normalize_dates(df: pd.DataFrame, date_columns: list[str] | None = None) -> pd.DataFrame:
     """
     Convierte columnas de fechas a formato datetime.
     Args:

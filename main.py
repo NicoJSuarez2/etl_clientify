@@ -38,7 +38,7 @@ def run_extract(logger, full_load: bool = True):
                 pass
             # Guardar en process/
             # load_to_parquet(df_transformed, name)
-            load_to_csv(logger, df_transformed, name)
+            load_to_csv(logger, df_transformed, name, full_load=full_load)
             logger.info(f"✅ {name} procesado y guardado.")
         except Exception as e:
             logger.info(f"❌ Error procesando {name}: {e}")
@@ -59,7 +59,7 @@ def run_transform(logger):
     """
     Función principal para cargar y limpiar archivos CSV en una carpeta dada.
     """
-    logger.info(f"\nIniciando transfomraciones en: data/raw")
+    logger.info(f"\n 🛠️Iniciando transfomraciones en: data/raw")
     limpiar_archivos(logger)
     logger.info("\nLimpieza completada.")
 
@@ -67,7 +67,7 @@ def run_load(logger):
     """
     Función principal para cargar archivos Parquet desde data/stage a la base de datos SQL.
     """
-    logger.info(f"\nIniciando carga de datos a la base de datos SQL...")
+    logger.info(f"\n📤Iniciando carga de datos a la base de datos SQL...")
     ejecucion_carga(logger)
     logger.info("\nCarga completada.")
 

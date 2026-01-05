@@ -12,14 +12,31 @@ root = Path(__file__).resolve().parent.parent.parent
 DATA_DIR = root / "data" / "raw"
 
 
-def load_to_csv(logger, df: pd.DataFrame, name: str, folder: Path = DATA_DIR):
+def load_to_csv(logger, df: pd.DataFrame, name: str, folder: Path = DATA_DIR, full_load: bool = True):
     """
     Guarda un DataFrame en formato CSV dentro de la carpeta de process.
     """
-    if df is not None and not df.empty:
-        Path(folder).mkdir(parents=True, exist_ok=True)
-        file_path = f"{folder}/{name}.csv"
-        df.to_csv(file_path, index=False, encoding="utf-8-sig")
-        logger.info(f"✅ Guardado en CSV: {file_path} ({len(df)} registros)")
+    if full_load:
+        if df is not None and not df.empty:
+            Path(folder).mkdir(parents=True, exist_ok=True)
+            file_path = f"{folder}/{name}.csv"
+            
+            # Cargar datos existentes si el archivo existe
+            if Path(file_path).exists():
+                existing_df = pd.read_csv(file_path)
+                df = pd.concat([existing_df, df], ignore_index=True)
+                df = df.drop_duplicates(keep='last').reset_index(drop=True)
+            
+            df.to_csv(file_path, index=False, encoding="utf-8-sig")
+            logger.info(f"✅ Guardado en CSV: {file_path} ({len(df)} registros)")
+        else:
+            logger.info(f"⚠️ DataFrame vacío: {name}")
+
     else:
-        logger.info(f"⚠️ DataFrame vacío: {name}")
+        if df is not None and not df.empty:
+            Path(folder).mkdir(parents=True, exist_ok=True)
+            file_path = f"{folder}/{name}.csv"
+            df.to_csv(file_path, index=False, encoding="utf-8-sig")
+            logger.info(f"✅ Guardado en CSV: {file_path} ({len(df)} registros)")
+        else:
+            logger.info(f"⚠️ DataFrame vacío: {name}")

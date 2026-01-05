@@ -3,10 +3,11 @@ from src.extract.extract import *
 from src.extract.transform import transform_dataset
 from src.extract.load import load_to_csv
 from src.transform.utils import *
+from src.load.load import ejecucion_carga
 import sys
 
 
-def run_extract(logger, full_load: bool = False):
+def run_extract(logger, full_load: bool = True):
     # Extraer todos los datos
     logger.info("Iniciando extracción de datos...")
     try:
@@ -14,11 +15,9 @@ def run_extract(logger, full_load: bool = False):
     except Exception as e:
         logger.info(f"❌ Error en extracción: {e}")
         return
-
     if not all_data:
         logger.info("⚠️ all_data está vacío. No hay datasets para transformar/guardar.")
         return
-
     # Transformar y guardar
     for name, df in all_data.items():
         logger.info(f"\n🔄 Transformando {name}...")
@@ -37,12 +36,10 @@ def run_extract(logger, full_load: bool = False):
                     continue
             except Exception:
                 pass
-
             # Guardar en process/
             # load_to_parquet(df_transformed, name)
             load_to_csv(logger, df_transformed, name)
             logger.info(f"✅ {name} procesado y guardado.")
-
         except Exception as e:
             logger.info(f"❌ Error procesando {name}: {e}")
 
@@ -52,10 +49,9 @@ def run_extract_times(logger):
     Función específica para extraer y guardar los tiempos de los deals.
     """
     logger.info(f"\n🔄 Transformando deal_times...")
-
     #df_times = extraccion_tiempos(logger)
-    transform_dataset(df_times, "deal_times")
-    load_to_csv(logger, df_times, "deal_times")
+    #transform_dataset(df_times, "deal_times")
+    #load_to_csv(logger, df_times, "deal_times")
     logger.info(f"✅ deal_times procesado y guardado.")
 
 
@@ -67,6 +63,13 @@ def run_transform(logger):
     limpiar_archivos(logger)
     logger.info("\nLimpieza completada.")
 
+def run_load(logger):
+    """
+    Función principal para cargar archivos Parquet desde data/stage a la base de datos SQL.
+    """
+    logger.info(f"\nIniciando carga de datos a la base de datos SQL...")
+    ejecucion_carga(logger)
+    logger.info("\nCarga completada.")
 
 # =============================
 # EJECUCIÓN
@@ -79,13 +82,16 @@ if __name__ == "__main__":
     if modo == "1":
         run_extract(logger, full_load=False)
         run_transform(logger)
+        run_load(logger)
 
     elif modo == "2":
         run_extract(logger, full_load=False)
         run_extract_times(logger)
         run_transform(logger)
+        run_load(logger)
 
     elif modo == "3":
         run_transform(logger)
+        run_load(logger)
 
     logger.info("Proceso ETL completado.")

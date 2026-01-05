@@ -2,7 +2,7 @@
 from src.extract.clientify_api import *
 
 
-def extract_all(logger, full_load: bool = False) -> dict:
+def extract_all(logger, full_load: bool = True) -> dict:
     """
     Extrae datasets desde Clientify y archivos procesados.
     Devuelve un diccionario con {nombre_dataset: DataFrame}.
@@ -15,7 +15,7 @@ def extract_all(logger, full_load: bool = False) -> dict:
 
     for name, endpoint in endpoints.items():
         try:
-            df = fetch_data(logger, endpoint, full_load=full_load)
+            df = fetch_data(logger, endpoint, full_load)
             if df is not None and not df.empty:
                 data[name] = df
         except Exception as e:

@@ -34,14 +34,17 @@ def config(logger):
 
 
 def load_incremental_fecha(
-    logger, archivo: str = "ultima_fecha.txt", full_load: bool = False
-) -> str:
+    logger,
+    archivo: str = "ultima_fecha.txt",
+    full_load: bool = True
+    ) -> str:
     """Si full_load = True, no utiliza la fecha de archivo"""
-    if full_load == False:
+    if full_load == True:
         return None
 
     else:
         archivo_fecha = "ultima_fecha.txt"
+        fecha_desde = None
 
         if not fecha_desde:
             if os.path.exists(archivo_fecha):
@@ -53,7 +56,7 @@ def load_incremental_fecha(
                 fecha_desde = "2024-01-01T00:00"
                 logger.info(f"⚠ Usando fecha inicial: {fecha_desde}")
 
-        params = params or {}
+        params = {}
         params["created[gte]"] = fecha_desde  # <-- formato válido
 
         return fecha_desde

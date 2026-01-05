@@ -53,7 +53,7 @@ def run_extract_times(logger):
     """
     logger.info(f"\n🔄 Transformando deal_times...")
 
-    df_times = extraccion_tiempos(logger)
+    #df_times = extraccion_tiempos(logger)
     transform_dataset(df_times, "deal_times")
     load_to_csv(logger, df_times, "deal_times")
     logger.info(f"✅ deal_times procesado y guardado.")

@@ -11,7 +11,7 @@ def extract_all(logger, full_load: bool = True) -> dict:
     # ===============================
     # === 1 Descargar endpoints generales ===
     # ===============================
-    _, _, endpoints = config(logger)
+    _, _, endpoints = config()
 
     for name, endpoint in endpoints.items():
         try:

@@ -8,11 +8,10 @@ from dotenv import load_dotenv
 from pathlib import Path
 
 
-def config(logger):
+def config():
 
     env_path = Path(__file__).resolve().parent.parent.parent / ".env"
     load_dotenv(dotenv_path=env_path)
-    logger.info(f"✅ Variables de entorno cargadas desde {env_path}")
     API_KEY = os.getenv("TOKEN_CLIENTIFY")
     BASE_URL = os.getenv("BASE_URL", "https://api.clientify.net/v1")
 
@@ -35,51 +34,49 @@ def config(logger):
 
 def load_incremental_fecha(
     logger,
-    archivo: str = "ultima_fecha.txt",
-    full_load: bool = True
     ) -> str:
-    """Si full_load = True, no utiliza la fecha de archivo"""
-    if full_load == True:
-        return None
+    """
+    Esta funcion solo se deberia utilizar si se desea hacer
+    una carga incremental basada en la ultima de ejecucion
+    """
 
-    else:
-        archivo_fecha = "ultima_fecha.txt"
-        fecha_desde = None
+    archivo_fecha = "ultima_fecha.txt"
+    fecha_desde = None
 
-        if not fecha_desde:
-            if os.path.exists(archivo_fecha):
-                with open(archivo_fecha, "r") as f:
-                    fecha_desde = f.read().strip()
-                    fecha_desde = fecha_desde[:16]  # <-- quitar segundos
-                    logger.info(f"📅 Usando fecha desde archivo: {fecha_desde}")
-            else:
-                fecha_desde = "2024-01-01T00:00"
-                logger.info(f"⚠ Usando fecha inicial: {fecha_desde}")
+    if not fecha_desde:
+        if os.path.exists(archivo_fecha):
+            with open(archivo_fecha, "r") as f:
+                fecha_desde = f.read().strip()
+                fecha_desde = fecha_desde[:16]  # <-- quitar segundos
+                logger.info(f"📅 Usando fecha desde archivo: {fecha_desde}")
+        else:
+            fecha_desde = "2024-01-01T00:00"
+            logger.info(f"⚠ Usando fecha inicial: {fecha_desde}")
 
-        params = {}
-        params["created[gte]"] = fecha_desde  # <-- formato válido
+    params = {}
+    params["created[gte]"] = fecha_desde  # <-- formato válido
 
-        return fecha_desde
+    return fecha_desde
 
 
 def fetch_data(
     logger,
     endpoint: str,
-    per_page: int = 100,
-    delay: float = 0.4,
-    params: dict = None,
     full_load: bool = False,
 ) -> pd.DataFrame:
+    """
+    ESTA FUNCION NECESITA CORRECIONES EN LA CARGA INCREMENTAL
+    """
 
-    params = params or {}
-    params["created[gte]"] = load_incremental_fecha(logger, full_load=full_load)
-    BASE_URL, headers, _ = config(logger)
+    params = {}
+    #params["created[gte]"] = load_incremental_fecha(logger)
+    BASE_URL, headers, _ = config()
     url = f"{BASE_URL}{endpoint}"
     all_results = []
     page = 1
 
     while True:
-        params_page = {**params, "page": page, "page_size": per_page}
+        params_page = {"page": page, "page_size": 100}
         resp = requests.get(url, headers=headers, params=params_page)
 
         if resp.status_code != 200:
@@ -95,7 +92,7 @@ def fetch_data(
         all_results.extend(results)
         logger.info(f"📄 {endpoint} - Página {page}: {len(results)} registros")
         page += 1
-        time.sleep(delay)
+        time.sleep(0.4)
 
     if not full_load:
         archivo_fecha = "ultima_fecha.txt"
@@ -108,7 +105,6 @@ def fetch_data(
     return pd.json_normalize(all_results) if all_results else pd.DataFrame()
 
 
-# 1) ---- LISTAR ID ----
 def listar_deals_id(logger) -> list:
     """
     Lee deals.csv y retorna los ID únicos
@@ -141,7 +137,11 @@ def listar_deals_id(logger) -> list:
     return deal_ids
 
 
-def extraccion_tiempos(logger, per_page: int = 100, delay: float = 0.5) -> pd.DataFrame:
+def extraccion_tiempos(logger) -> pd.DataFrame:
+    """
+    Extrae los tiempos de los deals usando sus IDs.
+    Retorna un DataFrame con los datos.
+    """
     BASE_URL = os.getenv("BASE_URL", "https://api.clientify.net/v1")
     _, headers, _ = config(logger)
 
@@ -186,7 +186,7 @@ def extraccion_tiempos(logger, per_page: int = 100, delay: float = 0.5) -> pd.Da
                 r["deal_id"] = deal_id
                 all_results.append(r)
 
-        time.sleep(delay)
+        time.sleep(0.5)
 
     df = pd.json_normalize(all_results) if all_results else pd.DataFrame()
 

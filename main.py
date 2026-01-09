@@ -80,12 +80,12 @@ if __name__ == "__main__":
     logger = config_logger()
 
     if modo == "1":
-        run_extract(logger, full_load=False)
+        run_extract(logger, full_load=True)
         run_transform(logger)
         run_load(logger)
 
     elif modo == "2":
-        run_extract(logger, full_load=False)
+        run_extract(logger, full_load=True)
         run_extract_times(logger)
         run_transform(logger)
         run_load(logger)

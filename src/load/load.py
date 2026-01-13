@@ -52,10 +52,10 @@ def ejecucion_carga(logger):
     db_config = load_env_variables(logger)
     engine = create_db_engine(db_config)
 
-    logger.info("DB_USERNAME:", db_config['username'])
-    logger.info("DB_PASSWORD:", "***" if db_config['password'] else None)
-    logger.info("DB_SERVER_IP:", db_config['server'])
-    logger.info("DB_DATABASE:", db_config['database'])
+    logger.info(f"DB_USERNAME: {db_config['username']}")
+    logger.info(f"DB_PASSWORD: {'***' if db_config['password'] else None}")
+    logger.info(f"DB_SERVER_IP: {db_config['server']}")
+    logger.info(f"DB_DATABASE: {db_config['database']}")
 
     # Carpeta donde están los parquet
     parquet_files = get_parquet_files("data/stage/*.parquet")

@@ -72,7 +72,7 @@ def fetch_data(
 ) -> pd.DataFrame:
 
     params = params or {}
-    params["created[gte]"] = load_incremental_fecha(logger, full_load=full_load)
+    #params["created[gte]"] = load_incremental_fecha(logger, full_load=full_load)
     BASE_URL, headers, _ = config(logger)
     url = f"{BASE_URL}{endpoint}"
     all_results = []

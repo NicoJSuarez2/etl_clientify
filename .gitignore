@@ -5,3 +5,7 @@ __pycache__
 data/raw/*.csv
 data/stage/*.parquet
 .venv
+log
+
+
+# Ignore all files in data/process except .gitkeep

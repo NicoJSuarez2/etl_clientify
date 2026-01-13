@@ -25,6 +25,11 @@ def normalize_dates(df: pd.DataFrame, date_columns: list[str] | None = None) -> 
 
     for col in date_columns:
         if col in df.columns:
+            # Validar que la columna no contenga listas o diccionarios
+            if df[col].dtype == 'object':
+                # Verificar si contiene tipos complejos
+                if any(isinstance(x, (list, dict)) for x in df[col].dropna().head()):
+                    continue
             df[col] = pd.to_datetime(df[col], errors="coerce")
     return df
 

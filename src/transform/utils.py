@@ -158,6 +158,7 @@ def desanidar_columna(df: pd.DataFrame, columna: str) -> pd.DataFrame:
     pd.DataFrame: DataFrame con las columnas desanidadas.
     """
     # Convertir la columna a listas de diccionarios (si está en formato string)
+    df = df.copy()
     df[columna] = df[columna].apply(
         lambda x: ast.literal_eval(x) if isinstance(x, str) else x
     )

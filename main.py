@@ -8,43 +8,7 @@ import sys
 
 
 def run_extract(logger, full_load: bool = True):
-    # Extraer todos los datos
-    logger.info("Iniciando extracción de datos...")
-    try:
-        all_data = extract_all(logger, full_load=full_load)
-    except Exception as e:
-        logger.info(f"❌ Error en extracción: {e}")
-        return
-    if not all_data:
-        logger.info("⚠️ all_data está vacío. No hay datasets para transformar/guardar.")
-        return
-    # Transformar y guardar
-    for name, df in all_data.items():
-        logger.info(f"\n🔄 Transformando {name}...")
-        try:
-            df_transformed = transform_dataset(df, name)
-            if df_transformed is None:
-                logger.info(f"⚠️ transform_dataset devolvió None para {name}, se omite.")
-                continue
-            # Si es un DataFrame, opcionalmente comprobar si está vacío
-            try:
-                is_empty = getattr(df_transformed, "empty", False)
-                if is_empty:
-                    logger.info(
-                        f"⚠️ El DataFrame transformado de {name} está vacío, se omite."
-                    )
-                    continue
-            except Exception:
-                pass
-            # Guardar en process/
-            # load_to_parquet(df_transformed, name)
-            load_to_csv(logger, df_transformed, name, full_load=full_load)
-            logger.info(f"✅ {name} procesado y guardado.")
-        except Exception as e:
-            logger.info(f"❌ Error procesando {name}: {e}")
-
-def run_extract2(logger, full_load: bool = True):
-    logger.info("🚀 Iniciando pipeline ETL (modo streaming)...")
+    logger.info("🚀 Iniciando pipeline ETL ")
 
     for name, df in extract_stream(logger, full_load):
 
@@ -110,7 +74,7 @@ if __name__ == "__main__":
     logger = config_logger()
 
     if modo == "1":
-        run_extract2(logger, full_load=False)
+        run_extract(logger, full_load=False)
         run_transform(logger)
         run_load(logger)
 

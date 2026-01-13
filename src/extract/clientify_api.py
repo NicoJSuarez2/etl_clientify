@@ -24,7 +24,7 @@ def config():
         #"deals": "/deals/",
         #"calls": "/calls/",
         #"tasks": "/tasks/",
-        #"users": "/users/",
+        "users": "/users/",
         "pipelines_stages": "/deals/pipelines/stages/",
         "tasks/types": "/tasks/types/",
         #"deals_pipelines": "/deals/pipelines/",

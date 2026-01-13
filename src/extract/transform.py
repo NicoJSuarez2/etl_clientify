@@ -30,7 +30,7 @@ def normalize_dates(df: pd.DataFrame, date_columns: list[str] | None = None) -> 
                 # Verificar si contiene tipos complejos
                 if any(isinstance(x, (list, dict)) for x in df[col].dropna().head()):
                     continue
-            df[col] = pd.to_datetime(df[col], errors="coerce")
+            df[col] = pd.to_datetime(df[col], errors="coerce",utc=True)
     return df
 
 

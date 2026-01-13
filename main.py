@@ -43,6 +43,36 @@ def run_extract(logger, full_load: bool = True):
         except Exception as e:
             logger.info(f"❌ Error procesando {name}: {e}")
 
+def run_extract2(logger, full_load: bool = True):
+    logger.info("🚀 Iniciando pipeline ETL (modo streaming)...")
+
+    for name, df in extract_stream(logger, full_load):
+
+        logger.info(f"\n🔄 Transformando {name}...")
+
+        try:
+            df_transformed = transform_dataset(df, name)
+
+            if df_transformed is None:
+                logger.info(f"⚠️ transform_dataset devolvió None para {name}, se omite.")
+                continue
+
+            # Validar vacío si es DataFrame
+            try:
+                if getattr(df_transformed, "empty", False):
+                    logger.info(f"⚠️ {name} quedó vacío tras transformación, se omite.")
+                    continue
+            except Exception:
+                pass
+
+            # Guardar
+            load_to_csv(logger, df_transformed, name, full_load=full_load)
+
+            logger.info(f"✅ {name} procesado y guardado.")
+
+        except Exception as e:
+            logger.info(f"❌ Error procesando {name}: {e}")
+
 
 def run_extract_times(logger):
     """
@@ -80,7 +110,7 @@ if __name__ == "__main__":
     logger = config_logger()
 
     if modo == "1":
-        run_extract(logger, full_load=False)
+        run_extract2(logger, full_load=False)
         run_transform(logger)
         run_load(logger)
 

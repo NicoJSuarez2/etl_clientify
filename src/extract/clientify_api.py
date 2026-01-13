@@ -20,13 +20,13 @@ def config():
     # Endpoints principales
     endpoints = {
         #"contacts": "/contacts/",
-        "companies": "/companies/",
+        #"companies": "/companies/",
         #"deals": "/deals/",
         #"calls": "/calls/",
         #"tasks": "/tasks/",
         #"users": "/users/",
-        #"pipelines_stages": "/deals/pipelines/stages/",
-        #"tasks/types": "/tasks/types/",
+        "pipelines_stages": "/deals/pipelines/stages/",
+        "tasks/types": "/tasks/types/",
         #"deals_pipelines": "/deals/pipelines/",
     }
     return BASE_URL, headers, endpoints
@@ -143,7 +143,7 @@ def extraccion_tiempos(logger) -> pd.DataFrame:
     Retorna un DataFrame con los datos.
     """
     BASE_URL = os.getenv("BASE_URL", "https://api.clientify.net/v1")
-    _, headers, _ = config(logger)
+    _, headers, _ = config()
 
     deal_ids = listar_deals_id(logger)
 

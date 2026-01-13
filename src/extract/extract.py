@@ -22,3 +22,24 @@ def extract_all(logger, full_load: bool = True) -> dict:
             logger.info(f"⚠️ No se pudo extraer {name}: {e}")
 
     return data
+
+def extract_stream(logger, full_load: bool = True):
+    """
+    Extrae datasets uno por uno desde Clientify.
+    Generador que produce (nombre_dataset, DataFrame).
+    """
+    _, _, endpoints = config()
+
+    for name, endpoint in endpoints.items():
+        try:
+            logger.info(f"📡 Extrayendo {name}...")
+            df = fetch_data(logger, endpoint, full_load)
+
+            if df is None or df.empty:
+                logger.info(f"⚠️ {name} vacío, se omite.")
+                continue
+
+            yield name, df   # 👈 devuelve uno por uno
+
+        except Exception as e:
+            logger.info(f"⚠️ No se pudo extraer {name}: {e}")

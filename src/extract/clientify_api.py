@@ -19,15 +19,15 @@ def config():
 
     # Endpoints principales
     endpoints = {
-        #"contacts": "/contacts/",
-        #"companies": "/companies/",
-        #"deals": "/deals/",
-        #"calls": "/calls/",
-        #"tasks": "/tasks/",
+        "contacts": "/contacts/",
+        "companies": "/companies/",
+        "deals": "/deals/",
+        "calls": "/calls/",
+        "tasks": "/tasks/",
         "users": "/users/",
         "pipelines_stages": "/deals/pipelines/stages/",
         "tasks/types": "/tasks/types/",
-        #"deals_pipelines": "/deals/pipelines/",
+        "deals_pipelines": "/deals/pipelines/",
     }
     return BASE_URL, headers, endpoints
 

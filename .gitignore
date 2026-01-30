@@ -6,6 +6,6 @@ data/raw/*.csv
 data/stage/*.parquet
 .venv
 *.log
-
+data
 
 # Ignore all files in data/process except .gitkeep

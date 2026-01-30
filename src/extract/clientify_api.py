@@ -186,7 +186,7 @@ def extraccion_tiempos(logger) -> pd.DataFrame:
                 r["deal_id"] = deal_id
                 all_results.append(r)
 
-        time.sleep(0.5)
+        time.sleep(0.3)
 
     df = pd.json_normalize(all_results) if all_results else pd.DataFrame()
 

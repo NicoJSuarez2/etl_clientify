@@ -229,34 +229,65 @@ def custom_columns(
 
     return df_sinanidados, df_desanidado
 
-
 def expand_stage_durations(
-    df: pd.DataFrame, id_col: str = "id", stages_col: str = "stages_duration"
-):
+    df: pd.DataFrame,
+    id_col: str = "id",
+    stages_col: str = "stages_duration",
+) -> pd.DataFrame:
+    
     registros = []
-    df = df[[id_col, stages_col]].dropna(subset=[stages_col])
+
     for _, row in df[[id_col, stages_col]].iterrows():
         id_value = row[id_col]
+        raw_stages = row[stages_col]
 
-        # Convertir string -> lista de diccionarios
-        try:
-            lista_stages = ast.literal_eval(row[stages_col])
-        except Exception:
+        # Saltar si viene vacío
+        if pd.isna(raw_stages):
             continue
-        # Recorrer cada diccionario dentro de la lista
+
+        # Convertir string → lista si es necesario
+        if isinstance(raw_stages, str):
+            try:
+                lista_stages = ast.literal_eval(raw_stages)
+            except Exception:
+                continue
+        else:
+            lista_stages = raw_stages
+
+        # Validar que sea lista
+        if not isinstance(lista_stages, list):
+            continue
+
+        # Expandir cada diccionario de la lista
         for item in lista_stages:
+            if not isinstance(item, dict):
+                continue
+
             dur = item.get("stage_duration", {})
-            registros.append(
-                {
-                    "id": id_value,
-                    "stage_name": item.get("stage_name", None),
-                    "days": dur.get("days", None),
-                    "hours": dur.get("hours", None),
-                    "minutes": dur.get("minutes", None),
-                }
-            )
+
+            days = dur.get("days") or 0
+            hours = dur.get("hours") or 0
+            minutes = dur.get("minutes") or 0
+
+            registros.append({
+                "id": id_value,
+                "stage_name": item.get("stage_name"),
+                "stage_position": item.get("stage_position"),
+                "days": days,
+                "hours": hours,
+                "minutes": minutes,
+                "total_days": round(
+                    float(days or 0)
+                    + float(hours or 0) / 24
+                    + float(minutes or 0) / 1440,
+                    2
+                ),
+            })
+
 
     return pd.DataFrame(registros)
+
+
 
 
 def limpiezas_especificas(logger, df: pd.DataFrame, nombre: str) -> pd.DataFrame:

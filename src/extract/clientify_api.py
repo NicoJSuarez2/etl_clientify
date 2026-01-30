@@ -25,8 +25,8 @@ def config():
         #"calls": "/calls/",
         #"tasks": "/tasks/",
         "users": "/users/",
-        "pipelines_stages": "/deals/pipelines/stages/",
-        "tasks/types": "/tasks/types/",
+        #"pipelines_stages": "/deals/pipelines/stages/",
+        #"tasks/types": "/tasks/types/",
         #"deals_pipelines": "/deals/pipelines/",
     }
     return BASE_URL, headers, endpoints

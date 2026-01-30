@@ -35,17 +35,29 @@ def get_parquet_files(path_pattern):
     return glob.glob(path_pattern)
 
 def load_parquet_to_sql(file_path, engine, logger):
-    """Leer un archivo parquet y cargarlo como tabla SQL con el mismo nombre."""
+    """Leer un archivo parquet y cargarlo como tabla SQL con full load."""
     df = pd.read_parquet(file_path)
-    table_name = os.path.splitext(os.path.basename(file_path))[0]  # Nombre sin extensión
-    df.to_sql(
-        table_name,
-        engine,
-        if_exists="replace",
-        index=False,
-        chunksize=5000
-    )
-    logger.info(f"Tabla '{table_name}' cargada correctamente.")
+    table_name = os.path.splitext(os.path.basename(file_path))[0]
+    
+    try:
+        # Vaciar tabla existente (mantiene estructura y tipos)
+        with engine.connect() as conn:
+            conn.execute(f"TRUNCATE TABLE {table_name}")
+            conn.commit()
+            logger.info(f"Tabla '{table_name}' vaciada para full load.")
+        
+        # Cargar todos los datos
+        df.to_sql(
+            table_name,
+            engine,
+            if_exists="append",
+            index=False,
+            chunksize=5000
+        )
+        logger.info(f"Tabla '{table_name}' cargada correctamente ({len(df)} filas insertadas).")
+    except Exception as e:
+        logger.error(f"Error al cargar tabla '{table_name}': {str(e)}")
+        raise
 
 def ejecucion_carga(logger):
     # Cargar configuración y engine

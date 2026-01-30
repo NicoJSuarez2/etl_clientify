@@ -1,0 +1,1326 @@
+2026-01-14 16:29:49,600 - clientify_etl - INFO - 📁 Archivos log en: C:\Users\bi\Documents\etl_clientify\log\etl.log
+2026-01-14 16:29:49,601 - clientify_etl - INFO - 🚀 Iniciando pipeline ETL 
+2026-01-14 16:29:49,602 - clientify_etl - INFO - 📡 Extrayendo users...
+2026-01-14 16:29:50,003 - clientify_etl - INFO - 📄 /users/ - Página 1: 18 registros
+2026-01-14 16:29:50,679 - clientify_etl - INFO - ❌ Error 404 en /users/: {"detail":"Invalid page."}
+2026-01-14 16:29:50,680 - clientify_etl - INFO - 💾 Fecha actual guardada: 2026-01-14T21:29
+2026-01-14 16:29:50,694 - clientify_etl - INFO - 
+🔄 Transformando users...
+2026-01-14 16:29:50,717 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/users.csv (18 registros)
+2026-01-14 16:29:50,717 - clientify_etl - INFO - ✅ users procesado y guardado.
+2026-01-14 16:29:50,717 - clientify_etl - INFO - 📡 Extrayendo pipelines_stages...
+2026-01-14 16:29:51,065 - clientify_etl - INFO - 📄 /deals/pipelines/stages/ - Página 1: 40 registros
+2026-01-14 16:29:51,742 - clientify_etl - INFO - ❌ Error 404 en /deals/pipelines/stages/: {"detail":"Invalid page."}
+2026-01-14 16:29:51,743 - clientify_etl - INFO - 💾 Fecha actual guardada: 2026-01-14T21:29
+2026-01-14 16:29:51,752 - clientify_etl - INFO - 
+🔄 Transformando pipelines_stages...
+2026-01-14 16:29:51,756 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/pipelines_stages.csv (40 registros)
+2026-01-14 16:29:51,756 - clientify_etl - INFO - ✅ pipelines_stages procesado y guardado.
+2026-01-14 16:29:51,756 - clientify_etl - INFO - 📡 Extrayendo tasks/types...
+2026-01-14 16:29:52,053 - clientify_etl - INFO - 📄 /tasks/types/ - Página 1: 23 registros
+2026-01-14 16:29:52,723 - clientify_etl - INFO - ❌ Error 404 en /tasks/types/: {"detail":"Invalid page."}
+2026-01-14 16:29:52,724 - clientify_etl - INFO - 💾 Fecha actual guardada: 2026-01-14T21:29
+2026-01-14 16:29:52,726 - clientify_etl - INFO - 
+🔄 Transformando tasks/types...
+2026-01-14 16:29:52,735 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/tasks_types.csv (23 registros)
+2026-01-14 16:29:52,735 - clientify_etl - INFO - ✅ tasks/types procesado y guardado.
+2026-01-14 16:29:52,735 - clientify_etl - INFO - 
+ 🛠️Iniciando transfomraciones en: data/raw
+2026-01-14 16:29:52,736 - clientify_etl - INFO - 
+ Procesando: calls.csv 
+2026-01-14 16:29:52,750 - clientify_etl - INFO - Aplicando limpieza específica para calls
+2026-01-14 16:29:52,751 - clientify_etl - INFO - 🔄 Iniciando limpieza para: calls
+2026-01-14 16:29:52,752 - clientify_etl - INFO - 🗑 Columnas eliminadas: []
+2026-01-14 16:29:52,756 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['audio_url', 'integration_id', 'related_companies', 'related_deals', 'related_contacts']
+2026-01-14 16:29:52,766 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['register_date', 'modified_at', 'call_time']
+2026-01-14 16:29:52,883 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\calls.parquet
+2026-01-14 16:29:52,883 - clientify_etl - INFO - 
+ Procesando: companies.csv 
+2026-01-14 16:29:52,929 - clientify_etl - INFO - 🔄 Iniciando limpieza para: companies
+2026-01-14 16:29:52,931 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['picture_url', 'facebook_url', 'linkedin_url', 'twitter_url']
+2026-01-14 16:29:53,022 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['last_viewed', 'last_interaction', 'created', 'modified']
+2026-01-14 16:29:53,051 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\companies.parquet
+2026-01-14 16:29:53,051 - clientify_etl - INFO - 
+ Procesando: contacts.csv 
+2026-01-14 16:29:53,110 - clientify_etl - INFO - 🔄 Iniciando limpieza para: contacts
+2026-01-14 16:29:53,139 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\contacts.parquet
+2026-01-14 16:29:53,139 - clientify_etl - INFO - 
+ Procesando: deals.csv 
+2026-01-14 16:29:53,204 - clientify_etl - INFO - Aplicando limpieza específica para deals
+2026-01-14 16:29:53,305 - clientify_etl - INFO - [deals] Procesando columna custom_fields
+2026-01-14 16:29:53,331 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-14 16:29:55,389 - clientify_etl - INFO - [deals] Filas generadas en deals_custom: 2507
+2026-01-14 16:29:55,416 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-14 16:29:55,435 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_desanidado.parquet
+2026-01-14 16:29:55,436 - clientify_etl - INFO - 
+ Procesando: deals_pipelines.csv 
+2026-01-14 16:29:55,440 - clientify_etl - INFO - 🔄 Iniciando limpieza para: deals_pipelines
+2026-01-14 16:29:55,442 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_pipelines.parquet
+2026-01-14 16:29:55,442 - clientify_etl - INFO - 
+ Procesando: deal_times.csv 
+2026-01-14 16:29:55,853 - clientify_etl - INFO - Aplicando limpieza específica para deal_times
+2026-01-14 16:29:59,367 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deal_times.parquet
+2026-01-14 16:29:59,367 - clientify_etl - INFO - 
+ Procesando: pipelines_stages.csv 
+2026-01-14 16:29:59,370 - clientify_etl - INFO - 🔄 Iniciando limpieza para: pipelines_stages
+2026-01-14 16:29:59,374 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\pipelines_stages.parquet
+2026-01-14 16:29:59,374 - clientify_etl - INFO - 
+ Procesando: tasks.csv 
+2026-01-14 16:29:59,453 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks
+2026-01-14 16:29:59,455 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['additional_option', 'location', 'guest_users', 'tags', 'type_desc']
+2026-01-14 16:29:59,542 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['deals', 'task_type', 'task_stage', 'related_companies']
+2026-01-14 16:29:59,641 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['start_datetime', 'end_datetime', 'due_date', 'created_at', 'created', 'modified', 'completed_date']
+2026-01-14 16:29:59,682 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks.parquet
+2026-01-14 16:29:59,682 - clientify_etl - INFO - 
+ Procesando: tasks_types.csv 
+2026-01-14 16:29:59,686 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks_types
+2026-01-14 16:29:59,689 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks_types.parquet
+2026-01-14 16:29:59,689 - clientify_etl - INFO - 
+ Procesando: users.csv 
+2026-01-14 16:29:59,691 - clientify_etl - INFO - Aplicando limpieza específica para users
+2026-01-14 16:29:59,696 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\users.parquet
+2026-01-14 16:29:59,698 - clientify_etl - INFO - 
+Limpieza completada.
+2026-01-14 16:29:59,699 - clientify_etl - INFO - 
+📤Iniciando carga de datos a la base de datos SQL...
+2026-01-14 16:29:59,701 - clientify_etl - INFO - ✅ Variables de entorno cargadas desde .env
+2026-01-14 16:29:59,784 - clientify_etl - INFO - DB_USERNAME: sa
+2026-01-14 16:29:59,784 - clientify_etl - INFO - DB_PASSWORD: ***
+2026-01-14 16:29:59,784 - clientify_etl - INFO - DB_SERVER_IP: 72.61.70.104
+2026-01-14 16:29:59,785 - clientify_etl - INFO - DB_DATABASE: Clientify;
+2026-01-14 16:30:14,163 - clientify_etl - INFO - 📁 Archivos log en: C:\Users\bi\Documents\etl_clientify\log\etl.log
+2026-01-14 16:30:14,164 - clientify_etl - INFO - 🚀 Iniciando pipeline ETL 
+2026-01-14 16:30:14,165 - clientify_etl - INFO - 📡 Extrayendo contacts...
+2026-01-14 16:30:15,634 - clientify_etl - INFO - 📄 /contacts/ - Página 1: 100 registros
+2026-01-14 16:30:17,530 - clientify_etl - INFO - 📄 /contacts/ - Página 2: 100 registros
+2026-01-14 16:30:19,290 - clientify_etl - INFO - 📄 /contacts/ - Página 3: 100 registros
+2026-01-14 16:30:21,165 - clientify_etl - INFO - 📄 /contacts/ - Página 4: 100 registros
+2026-01-14 16:30:23,127 - clientify_etl - INFO - 📄 /contacts/ - Página 5: 100 registros
+2026-01-14 16:30:24,870 - clientify_etl - INFO - 📄 /contacts/ - Página 6: 100 registros
+2026-01-14 16:30:27,327 - clientify_etl - INFO - 📄 /contacts/ - Página 7: 100 registros
+2026-01-14 16:30:29,170 - clientify_etl - INFO - 📄 /contacts/ - Página 8: 100 registros
+2026-01-14 16:30:30,931 - clientify_etl - INFO - 📄 /contacts/ - Página 9: 100 registros
+2026-01-14 16:30:32,801 - clientify_etl - INFO - 📄 /contacts/ - Página 10: 100 registros
+2026-01-14 16:30:34,671 - clientify_etl - INFO - 📄 /contacts/ - Página 11: 100 registros
+2026-01-14 16:30:36,368 - clientify_etl - INFO - 📄 /contacts/ - Página 12: 100 registros
+2026-01-14 16:30:38,828 - clientify_etl - INFO - 📄 /contacts/ - Página 13: 100 registros
+2026-01-14 16:30:41,241 - clientify_etl - INFO - 📄 /contacts/ - Página 14: 100 registros
+2026-01-14 16:30:43,041 - clientify_etl - INFO - 📄 /contacts/ - Página 15: 100 registros
+2026-01-14 16:30:44,917 - clientify_etl - INFO - 📄 /contacts/ - Página 16: 100 registros
+2026-01-14 16:30:46,728 - clientify_etl - INFO - 📄 /contacts/ - Página 17: 100 registros
+2026-01-14 16:30:48,648 - clientify_etl - INFO - 📄 /contacts/ - Página 18: 100 registros
+2026-01-14 16:30:50,669 - clientify_etl - INFO - 📄 /contacts/ - Página 19: 100 registros
+2026-01-14 16:30:52,494 - clientify_etl - INFO - 📄 /contacts/ - Página 20: 100 registros
+2026-01-14 16:30:54,271 - clientify_etl - INFO - 📄 /contacts/ - Página 21: 100 registros
+2026-01-14 16:30:55,997 - clientify_etl - INFO - 📄 /contacts/ - Página 22: 100 registros
+2026-01-14 16:30:57,768 - clientify_etl - INFO - 📄 /contacts/ - Página 23: 100 registros
+2026-01-14 16:30:59,552 - clientify_etl - INFO - 📄 /contacts/ - Página 24: 100 registros
+2026-01-14 16:31:01,547 - clientify_etl - INFO - 📄 /contacts/ - Página 25: 100 registros
+2026-01-14 16:31:03,456 - clientify_etl - INFO - 📄 /contacts/ - Página 26: 100 registros
+2026-01-14 16:31:05,236 - clientify_etl - INFO - 📄 /contacts/ - Página 27: 100 registros
+2026-01-14 16:31:06,999 - clientify_etl - INFO - 📄 /contacts/ - Página 28: 100 registros
+2026-01-14 16:31:08,901 - clientify_etl - INFO - 📄 /contacts/ - Página 29: 100 registros
+2026-01-14 16:31:10,698 - clientify_etl - INFO - 📄 /contacts/ - Página 30: 100 registros
+2026-01-14 16:31:12,464 - clientify_etl - INFO - 📄 /contacts/ - Página 31: 100 registros
+2026-01-14 16:31:14,262 - clientify_etl - INFO - 📄 /contacts/ - Página 32: 100 registros
+2026-01-14 16:31:15,959 - clientify_etl - INFO - 📄 /contacts/ - Página 33: 100 registros
+2026-01-14 16:31:17,667 - clientify_etl - INFO - 📄 /contacts/ - Página 34: 100 registros
+2026-01-14 16:31:19,500 - clientify_etl - INFO - 📄 /contacts/ - Página 35: 100 registros
+2026-01-14 16:31:21,251 - clientify_etl - INFO - 📄 /contacts/ - Página 36: 100 registros
+2026-01-14 16:31:22,977 - clientify_etl - INFO - 📄 /contacts/ - Página 37: 100 registros
+2026-01-14 16:31:25,105 - clientify_etl - INFO - 📄 /contacts/ - Página 38: 100 registros
+2026-01-14 16:31:26,845 - clientify_etl - INFO - 📄 /contacts/ - Página 39: 100 registros
+2026-01-14 16:31:28,840 - clientify_etl - INFO - 📄 /contacts/ - Página 40: 100 registros
+2026-01-14 16:31:30,822 - clientify_etl - INFO - 📄 /contacts/ - Página 41: 100 registros
+2026-01-14 16:31:32,560 - clientify_etl - INFO - 📄 /contacts/ - Página 42: 100 registros
+2026-01-14 16:31:34,520 - clientify_etl - INFO - 📄 /contacts/ - Página 43: 100 registros
+2026-01-14 16:31:38,248 - clientify_etl - INFO - 📄 /contacts/ - Página 44: 100 registros
+2026-01-14 16:31:40,031 - clientify_etl - INFO - 📄 /contacts/ - Página 45: 100 registros
+2026-01-14 16:31:41,784 - clientify_etl - INFO - 📄 /contacts/ - Página 46: 100 registros
+2026-01-14 16:31:43,480 - clientify_etl - INFO - 📄 /contacts/ - Página 47: 100 registros
+2026-01-14 16:31:45,279 - clientify_etl - INFO - 📄 /contacts/ - Página 48: 100 registros
+2026-01-14 16:31:47,008 - clientify_etl - INFO - 📄 /contacts/ - Página 49: 100 registros
+2026-01-14 16:31:48,818 - clientify_etl - INFO - 📄 /contacts/ - Página 50: 100 registros
+2026-01-14 16:31:50,522 - clientify_etl - INFO - 📄 /contacts/ - Página 51: 100 registros
+2026-01-14 16:31:52,378 - clientify_etl - INFO - 📄 /contacts/ - Página 52: 100 registros
+2026-01-14 16:31:54,213 - clientify_etl - INFO - 📄 /contacts/ - Página 53: 100 registros
+2026-01-14 16:31:56,050 - clientify_etl - INFO - 📄 /contacts/ - Página 54: 100 registros
+2026-01-14 16:31:57,674 - clientify_etl - INFO - 📄 /contacts/ - Página 55: 100 registros
+2026-01-14 16:31:59,370 - clientify_etl - INFO - 📄 /contacts/ - Página 56: 100 registros
+2026-01-14 16:32:01,019 - clientify_etl - INFO - 📄 /contacts/ - Página 57: 100 registros
+2026-01-14 16:32:02,706 - clientify_etl - INFO - 📄 /contacts/ - Página 58: 100 registros
+2026-01-14 16:32:04,541 - clientify_etl - INFO - 📄 /contacts/ - Página 59: 100 registros
+2026-01-14 16:32:06,236 - clientify_etl - INFO - 📄 /contacts/ - Página 60: 100 registros
+2026-01-14 16:32:07,967 - clientify_etl - INFO - 📄 /contacts/ - Página 61: 100 registros
+2026-01-14 16:32:09,770 - clientify_etl - INFO - 📄 /contacts/ - Página 62: 100 registros
+2026-01-14 16:32:11,444 - clientify_etl - INFO - 📄 /contacts/ - Página 63: 100 registros
+2026-01-14 16:32:12,982 - clientify_etl - INFO - 📄 /contacts/ - Página 64: 100 registros
+2026-01-14 16:32:14,665 - clientify_etl - INFO - 📄 /contacts/ - Página 65: 100 registros
+2026-01-14 16:32:16,319 - clientify_etl - INFO - 📄 /contacts/ - Página 66: 100 registros
+2026-01-14 16:32:17,879 - clientify_etl - INFO - 📄 /contacts/ - Página 67: 100 registros
+2026-01-14 16:32:19,474 - clientify_etl - INFO - 📄 /contacts/ - Página 68: 100 registros
+2026-01-14 16:32:21,649 - clientify_etl - INFO - 📄 /contacts/ - Página 69: 100 registros
+2026-01-14 16:32:23,517 - clientify_etl - INFO - 📄 /contacts/ - Página 70: 100 registros
+2026-01-14 16:32:25,102 - clientify_etl - INFO - 📄 /contacts/ - Página 71: 100 registros
+2026-01-14 16:32:26,727 - clientify_etl - INFO - 📄 /contacts/ - Página 72: 100 registros
+2026-01-14 16:32:28,350 - clientify_etl - INFO - 📄 /contacts/ - Página 73: 100 registros
+2026-01-14 16:32:30,031 - clientify_etl - INFO - 📄 /contacts/ - Página 74: 100 registros
+2026-01-14 16:32:31,671 - clientify_etl - INFO - 📄 /contacts/ - Página 75: 100 registros
+2026-01-14 16:32:33,252 - clientify_etl - INFO - 📄 /contacts/ - Página 76: 100 registros
+2026-01-14 16:32:34,895 - clientify_etl - INFO - 📄 /contacts/ - Página 77: 100 registros
+2026-01-14 16:32:36,491 - clientify_etl - INFO - 📄 /contacts/ - Página 78: 100 registros
+2026-01-14 16:32:38,143 - clientify_etl - INFO - 📄 /contacts/ - Página 79: 100 registros
+2026-01-14 16:32:39,861 - clientify_etl - INFO - 📄 /contacts/ - Página 80: 100 registros
+2026-01-14 16:32:41,586 - clientify_etl - INFO - 📄 /contacts/ - Página 81: 100 registros
+2026-01-14 16:32:43,149 - clientify_etl - INFO - 📄 /contacts/ - Página 82: 100 registros
+2026-01-14 16:32:44,100 - clientify_etl - INFO - 📄 /contacts/ - Página 83: 14 registros
+2026-01-14 16:32:44,876 - clientify_etl - INFO - ❌ Error 404 en /contacts/: {"detail":"Invalid page."}
+2026-01-14 16:32:44,876 - clientify_etl - INFO - 💾 Fecha actual guardada: 2026-01-14T21:32
+2026-01-14 16:32:44,958 - clientify_etl - INFO - 
+🔄 Transformando contacts...
+2026-01-14 16:32:45,092 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/contacts.csv (8214 registros)
+2026-01-14 16:32:45,092 - clientify_etl - INFO - ✅ contacts procesado y guardado.
+2026-01-14 16:32:45,092 - clientify_etl - INFO - 📡 Extrayendo companies...
+2026-01-14 16:32:46,257 - clientify_etl - INFO - 📄 /companies/ - Página 1: 100 registros
+2026-01-14 16:32:47,644 - clientify_etl - INFO - 📄 /companies/ - Página 2: 100 registros
+2026-01-14 16:32:49,092 - clientify_etl - INFO - 📄 /companies/ - Página 3: 100 registros
+2026-01-14 16:32:50,537 - clientify_etl - INFO - 📄 /companies/ - Página 4: 100 registros
+2026-01-14 16:32:51,988 - clientify_etl - INFO - 📄 /companies/ - Página 5: 100 registros
+2026-01-14 16:32:53,459 - clientify_etl - INFO - 📄 /companies/ - Página 6: 100 registros
+2026-01-14 16:32:54,860 - clientify_etl - INFO - 📄 /companies/ - Página 7: 100 registros
+2026-01-14 16:32:56,323 - clientify_etl - INFO - 📄 /companies/ - Página 8: 100 registros
+2026-01-14 16:32:57,920 - clientify_etl - INFO - 📄 /companies/ - Página 9: 100 registros
+2026-01-14 16:32:59,359 - clientify_etl - INFO - 📄 /companies/ - Página 10: 100 registros
+2026-01-14 16:33:00,822 - clientify_etl - INFO - 📄 /companies/ - Página 11: 100 registros
+2026-01-14 16:33:02,253 - clientify_etl - INFO - 📄 /companies/ - Página 12: 100 registros
+2026-01-14 16:33:03,711 - clientify_etl - INFO - 📄 /companies/ - Página 13: 100 registros
+2026-01-14 16:33:06,020 - clientify_etl - INFO - 📄 /companies/ - Página 14: 100 registros
+2026-01-14 16:33:07,505 - clientify_etl - INFO - 📄 /companies/ - Página 15: 100 registros
+2026-01-14 16:33:09,091 - clientify_etl - INFO - 📄 /companies/ - Página 16: 100 registros
+2026-01-14 16:33:10,575 - clientify_etl - INFO - 📄 /companies/ - Página 17: 100 registros
+2026-01-14 16:33:12,221 - clientify_etl - INFO - 📄 /companies/ - Página 18: 100 registros
+2026-01-14 16:33:13,674 - clientify_etl - INFO - 📄 /companies/ - Página 19: 100 registros
+2026-01-14 16:33:15,122 - clientify_etl - INFO - 📄 /companies/ - Página 20: 100 registros
+2026-01-14 16:33:16,578 - clientify_etl - INFO - 📄 /companies/ - Página 21: 100 registros
+2026-01-14 16:33:20,296 - clientify_etl - INFO - 📄 /companies/ - Página 22: 100 registros
+2026-01-14 16:33:21,714 - clientify_etl - INFO - 📄 /companies/ - Página 23: 100 registros
+2026-01-14 16:33:23,295 - clientify_etl - INFO - 📄 /companies/ - Página 24: 100 registros
+2026-01-14 16:33:24,806 - clientify_etl - INFO - 📄 /companies/ - Página 25: 100 registros
+2026-01-14 16:33:27,045 - clientify_etl - INFO - 📄 /companies/ - Página 26: 100 registros
+2026-01-14 16:33:28,502 - clientify_etl - INFO - 📄 /companies/ - Página 27: 100 registros
+2026-01-14 16:33:29,879 - clientify_etl - INFO - 📄 /companies/ - Página 28: 100 registros
+2026-01-14 16:33:31,377 - clientify_etl - INFO - 📄 /companies/ - Página 29: 100 registros
+2026-01-14 16:33:32,836 - clientify_etl - INFO - 📄 /companies/ - Página 30: 100 registros
+2026-01-14 16:33:34,442 - clientify_etl - INFO - 📄 /companies/ - Página 31: 100 registros
+2026-01-14 16:33:35,916 - clientify_etl - INFO - 📄 /companies/ - Página 32: 100 registros
+2026-01-14 16:33:37,487 - clientify_etl - INFO - 📄 /companies/ - Página 33: 100 registros
+2026-01-14 16:33:38,978 - clientify_etl - INFO - 📄 /companies/ - Página 34: 100 registros
+2026-01-14 16:33:40,489 - clientify_etl - INFO - 📄 /companies/ - Página 35: 100 registros
+2026-01-14 16:33:41,910 - clientify_etl - INFO - 📄 /companies/ - Página 36: 100 registros
+2026-01-14 16:33:43,459 - clientify_etl - INFO - 📄 /companies/ - Página 37: 100 registros
+2026-01-14 16:33:44,968 - clientify_etl - INFO - 📄 /companies/ - Página 38: 100 registros
+2026-01-14 16:33:46,480 - clientify_etl - INFO - 📄 /companies/ - Página 39: 100 registros
+2026-01-14 16:33:47,962 - clientify_etl - INFO - 📄 /companies/ - Página 40: 100 registros
+2026-01-14 16:33:49,429 - clientify_etl - INFO - 📄 /companies/ - Página 41: 100 registros
+2026-01-14 16:33:50,798 - clientify_etl - INFO - 📄 /companies/ - Página 42: 100 registros
+2026-01-14 16:33:52,489 - clientify_etl - INFO - 📄 /companies/ - Página 43: 100 registros
+2026-01-14 16:33:53,991 - clientify_etl - INFO - 📄 /companies/ - Página 44: 100 registros
+2026-01-14 16:33:55,407 - clientify_etl - INFO - 📄 /companies/ - Página 45: 100 registros
+2026-01-14 16:33:56,870 - clientify_etl - INFO - 📄 /companies/ - Página 46: 100 registros
+2026-01-14 16:33:58,329 - clientify_etl - INFO - 📄 /companies/ - Página 47: 100 registros
+2026-01-14 16:33:59,940 - clientify_etl - INFO - 📄 /companies/ - Página 48: 100 registros
+2026-01-14 16:34:01,388 - clientify_etl - INFO - 📄 /companies/ - Página 49: 100 registros
+2026-01-14 16:34:02,756 - clientify_etl - INFO - 📄 /companies/ - Página 50: 100 registros
+2026-01-14 16:34:04,193 - clientify_etl - INFO - 📄 /companies/ - Página 51: 100 registros
+2026-01-14 16:34:05,635 - clientify_etl - INFO - 📄 /companies/ - Página 52: 100 registros
+2026-01-14 16:34:07,156 - clientify_etl - INFO - 📄 /companies/ - Página 53: 100 registros
+2026-01-14 16:34:08,664 - clientify_etl - INFO - 📄 /companies/ - Página 54: 100 registros
+2026-01-14 16:34:10,071 - clientify_etl - INFO - 📄 /companies/ - Página 55: 100 registros
+2026-01-14 16:34:12,949 - clientify_etl - INFO - 📄 /companies/ - Página 56: 100 registros
+2026-01-14 16:34:14,400 - clientify_etl - INFO - 📄 /companies/ - Página 57: 100 registros
+2026-01-14 16:34:15,692 - clientify_etl - INFO - 📄 /companies/ - Página 58: 100 registros
+2026-01-14 16:34:17,045 - clientify_etl - INFO - 📄 /companies/ - Página 59: 100 registros
+2026-01-14 16:34:18,504 - clientify_etl - INFO - 📄 /companies/ - Página 60: 100 registros
+2026-01-14 16:34:19,924 - clientify_etl - INFO - 📄 /companies/ - Página 61: 100 registros
+2026-01-14 16:34:21,359 - clientify_etl - INFO - 📄 /companies/ - Página 62: 100 registros
+2026-01-14 16:34:23,462 - clientify_etl - INFO - 📄 /companies/ - Página 63: 100 registros
+2026-01-14 16:34:25,068 - clientify_etl - INFO - 📄 /companies/ - Página 64: 100 registros
+2026-01-14 16:34:26,571 - clientify_etl - INFO - 📄 /companies/ - Página 65: 100 registros
+2026-01-14 16:34:27,979 - clientify_etl - INFO - 📄 /companies/ - Página 66: 100 registros
+2026-01-14 16:34:29,394 - clientify_etl - INFO - 📄 /companies/ - Página 67: 100 registros
+2026-01-14 16:34:30,839 - clientify_etl - INFO - 📄 /companies/ - Página 68: 100 registros
+2026-01-14 16:34:32,277 - clientify_etl - INFO - 📄 /companies/ - Página 69: 100 registros
+2026-01-14 16:34:33,714 - clientify_etl - INFO - 📄 /companies/ - Página 70: 100 registros
+2026-01-14 16:34:35,279 - clientify_etl - INFO - 📄 /companies/ - Página 71: 100 registros
+2026-01-14 16:34:36,843 - clientify_etl - INFO - 📄 /companies/ - Página 72: 100 registros
+2026-01-14 16:34:38,405 - clientify_etl - INFO - 📄 /companies/ - Página 73: 100 registros
+2026-01-14 16:34:40,272 - clientify_etl - INFO - 📄 /companies/ - Página 74: 100 registros
+2026-01-14 16:34:41,767 - clientify_etl - INFO - 📄 /companies/ - Página 75: 100 registros
+2026-01-14 16:34:43,324 - clientify_etl - INFO - 📄 /companies/ - Página 76: 100 registros
+2026-01-14 16:34:44,864 - clientify_etl - INFO - 📄 /companies/ - Página 77: 100 registros
+2026-01-14 16:34:46,370 - clientify_etl - INFO - 📄 /companies/ - Página 78: 100 registros
+2026-01-14 16:34:47,888 - clientify_etl - INFO - 📄 /companies/ - Página 79: 100 registros
+2026-01-14 16:34:49,425 - clientify_etl - INFO - 📄 /companies/ - Página 80: 100 registros
+2026-01-14 16:34:50,878 - clientify_etl - INFO - 📄 /companies/ - Página 81: 100 registros
+2026-01-14 16:34:52,372 - clientify_etl - INFO - 📄 /companies/ - Página 82: 100 registros
+2026-01-14 16:34:53,851 - clientify_etl - INFO - 📄 /companies/ - Página 83: 100 registros
+2026-01-14 16:34:55,371 - clientify_etl - INFO - 📄 /companies/ - Página 84: 100 registros
+2026-01-14 16:34:56,807 - clientify_etl - INFO - 📄 /companies/ - Página 85: 100 registros
+2026-01-14 16:34:58,311 - clientify_etl - INFO - 📄 /companies/ - Página 86: 100 registros
+2026-01-14 16:34:59,960 - clientify_etl - INFO - 📄 /companies/ - Página 87: 100 registros
+2026-01-14 16:35:02,080 - clientify_etl - INFO - 📄 /companies/ - Página 88: 100 registros
+2026-01-14 16:35:03,468 - clientify_etl - INFO - 📄 /companies/ - Página 89: 100 registros
+2026-01-14 16:35:04,907 - clientify_etl - INFO - 📄 /companies/ - Página 90: 100 registros
+2026-01-14 16:35:06,282 - clientify_etl - INFO - 📄 /companies/ - Página 91: 100 registros
+2026-01-14 16:35:07,656 - clientify_etl - INFO - 📄 /companies/ - Página 92: 100 registros
+2026-01-14 16:35:09,009 - clientify_etl - INFO - 📄 /companies/ - Página 93: 100 registros
+2026-01-14 16:35:10,272 - clientify_etl - INFO - 📄 /companies/ - Página 94: 100 registros
+2026-01-14 16:35:11,699 - clientify_etl - INFO - 📄 /companies/ - Página 95: 100 registros
+2026-01-14 16:35:13,658 - clientify_etl - INFO - 📄 /companies/ - Página 96: 100 registros
+2026-01-14 16:35:14,862 - clientify_etl - INFO - 📄 /companies/ - Página 97: 100 registros
+2026-01-14 16:35:16,074 - clientify_etl - INFO - 📄 /companies/ - Página 98: 100 registros
+2026-01-14 16:35:17,205 - clientify_etl - INFO - 📄 /companies/ - Página 99: 100 registros
+2026-01-14 16:35:18,019 - clientify_etl - INFO - 📄 /companies/ - Página 100: 16 registros
+2026-01-14 16:35:18,795 - clientify_etl - INFO - ❌ Error 404 en /companies/: {"detail":"Invalid page."}
+2026-01-14 16:35:18,796 - clientify_etl - INFO - 💾 Fecha actual guardada: 2026-01-14T21:35
+2026-01-14 16:35:18,885 - clientify_etl - INFO - 
+🔄 Transformando companies...
+2026-01-14 16:35:18,999 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/companies.csv (9916 registros)
+2026-01-14 16:35:18,999 - clientify_etl - INFO - ✅ companies procesado y guardado.
+2026-01-14 16:35:18,999 - clientify_etl - INFO - 📡 Extrayendo deals...
+2026-01-14 16:35:20,581 - clientify_etl - INFO - 📄 /deals/ - Página 1: 100 registros
+2026-01-14 16:35:22,380 - clientify_etl - INFO - 📄 /deals/ - Página 2: 100 registros
+2026-01-14 16:35:24,649 - clientify_etl - INFO - 📄 /deals/ - Página 3: 100 registros
+2026-01-14 16:35:26,655 - clientify_etl - INFO - 📄 /deals/ - Página 4: 100 registros
+2026-01-14 16:35:28,716 - clientify_etl - INFO - 📄 /deals/ - Página 5: 100 registros
+2026-01-14 16:35:30,654 - clientify_etl - INFO - 📄 /deals/ - Página 6: 100 registros
+2026-01-14 16:35:33,397 - clientify_etl - INFO - 📄 /deals/ - Página 7: 100 registros
+2026-01-14 16:35:35,866 - clientify_etl - INFO - 📄 /deals/ - Página 8: 100 registros
+2026-01-14 16:35:38,108 - clientify_etl - INFO - 📄 /deals/ - Página 9: 100 registros
+2026-01-14 16:35:40,358 - clientify_etl - INFO - 📄 /deals/ - Página 10: 100 registros
+2026-01-14 16:35:42,328 - clientify_etl - INFO - 📄 /deals/ - Página 11: 100 registros
+2026-01-14 16:35:45,205 - clientify_etl - INFO - 📄 /deals/ - Página 12: 100 registros
+2026-01-14 16:35:47,584 - clientify_etl - INFO - 📄 /deals/ - Página 13: 100 registros
+2026-01-14 16:35:49,871 - clientify_etl - INFO - 📄 /deals/ - Página 14: 100 registros
+2026-01-14 16:35:52,627 - clientify_etl - INFO - 📄 /deals/ - Página 15: 100 registros
+2026-01-14 16:35:55,177 - clientify_etl - INFO - 📄 /deals/ - Página 16: 100 registros
+2026-01-14 16:35:57,878 - clientify_etl - INFO - 📄 /deals/ - Página 17: 100 registros
+2026-01-14 16:36:00,911 - clientify_etl - INFO - 📄 /deals/ - Página 18: 100 registros
+2026-01-14 16:36:03,321 - clientify_etl - INFO - 📄 /deals/ - Página 19: 100 registros
+2026-01-14 16:36:05,686 - clientify_etl - INFO - 📄 /deals/ - Página 20: 100 registros
+2026-01-14 16:36:08,032 - clientify_etl - INFO - 📄 /deals/ - Página 21: 100 registros
+2026-01-14 16:36:10,601 - clientify_etl - INFO - 📄 /deals/ - Página 22: 100 registros
+2026-01-14 16:36:13,528 - clientify_etl - INFO - 📄 /deals/ - Página 23: 100 registros
+2026-01-14 16:36:16,001 - clientify_etl - INFO - 📄 /deals/ - Página 24: 100 registros
+2026-01-14 16:36:18,153 - clientify_etl - INFO - 📄 /deals/ - Página 25: 100 registros
+2026-01-14 16:36:20,046 - clientify_etl - INFO - 📄 /deals/ - Página 26: 100 registros
+2026-01-14 16:36:22,049 - clientify_etl - INFO - 📄 /deals/ - Página 27: 100 registros
+2026-01-14 16:36:25,102 - clientify_etl - INFO - 📄 /deals/ - Página 28: 100 registros
+2026-01-14 16:36:27,282 - clientify_etl - INFO - 📄 /deals/ - Página 29: 100 registros
+2026-01-14 16:36:29,587 - clientify_etl - INFO - 📄 /deals/ - Página 30: 100 registros
+2026-01-14 16:36:31,774 - clientify_etl - INFO - 📄 /deals/ - Página 31: 100 registros
+2026-01-14 16:36:33,882 - clientify_etl - INFO - 📄 /deals/ - Página 32: 100 registros
+2026-01-14 16:36:35,673 - clientify_etl - INFO - 📄 /deals/ - Página 33: 100 registros
+2026-01-14 16:36:37,689 - clientify_etl - INFO - 📄 /deals/ - Página 34: 100 registros
+2026-01-14 16:36:39,768 - clientify_etl - INFO - 📄 /deals/ - Página 35: 100 registros
+2026-01-14 16:36:41,837 - clientify_etl - INFO - 📄 /deals/ - Página 36: 100 registros
+2026-01-14 16:36:44,063 - clientify_etl - INFO - 📄 /deals/ - Página 37: 100 registros
+2026-01-14 16:36:47,847 - clientify_etl - INFO - 📄 /deals/ - Página 38: 100 registros
+2026-01-14 16:36:49,485 - clientify_etl - INFO - 📄 /deals/ - Página 39: 100 registros
+2026-01-14 16:36:51,633 - clientify_etl - INFO - 📄 /deals/ - Página 40: 100 registros
+2026-01-14 16:36:54,101 - clientify_etl - INFO - 📄 /deals/ - Página 41: 100 registros
+2026-01-14 16:36:56,341 - clientify_etl - INFO - 📄 /deals/ - Página 42: 100 registros
+2026-01-14 16:36:58,949 - clientify_etl - INFO - 📄 /deals/ - Página 43: 100 registros
+2026-01-14 16:37:01,605 - clientify_etl - INFO - 📄 /deals/ - Página 44: 100 registros
+2026-01-14 16:37:04,168 - clientify_etl - INFO - 📄 /deals/ - Página 45: 100 registros
+2026-01-14 16:37:06,378 - clientify_etl - INFO - 📄 /deals/ - Página 46: 100 registros
+2026-01-14 16:37:08,724 - clientify_etl - INFO - 📄 /deals/ - Página 47: 100 registros
+2026-01-14 16:37:11,008 - clientify_etl - INFO - 📄 /deals/ - Página 48: 100 registros
+2026-01-14 16:37:13,315 - clientify_etl - INFO - 📄 /deals/ - Página 49: 100 registros
+2026-01-14 16:37:16,193 - clientify_etl - INFO - 📄 /deals/ - Página 50: 100 registros
+2026-01-14 16:37:18,410 - clientify_etl - INFO - 📄 /deals/ - Página 51: 100 registros
+2026-01-14 16:37:20,635 - clientify_etl - INFO - 📄 /deals/ - Página 52: 100 registros
+2026-01-14 16:37:23,006 - clientify_etl - INFO - 📄 /deals/ - Página 53: 100 registros
+2026-01-14 16:37:25,569 - clientify_etl - INFO - 📄 /deals/ - Página 54: 100 registros
+2026-01-14 16:37:27,898 - clientify_etl - INFO - 📄 /deals/ - Página 55: 100 registros
+2026-01-14 16:37:31,467 - clientify_etl - INFO - 📄 /deals/ - Página 56: 100 registros
+2026-01-14 16:37:34,066 - clientify_etl - INFO - 📄 /deals/ - Página 57: 100 registros
+2026-01-14 16:37:36,787 - clientify_etl - INFO - 📄 /deals/ - Página 58: 100 registros
+2026-01-14 16:37:39,145 - clientify_etl - INFO - 📄 /deals/ - Página 59: 100 registros
+2026-01-14 16:37:41,384 - clientify_etl - INFO - 📄 /deals/ - Página 60: 100 registros
+2026-01-14 16:37:43,767 - clientify_etl - INFO - 📄 /deals/ - Página 61: 100 registros
+2026-01-14 16:37:46,124 - clientify_etl - INFO - 📄 /deals/ - Página 62: 100 registros
+2026-01-14 16:37:48,221 - clientify_etl - INFO - 📄 /deals/ - Página 63: 100 registros
+2026-01-14 16:37:50,139 - clientify_etl - INFO - 📄 /deals/ - Página 64: 79 registros
+2026-01-14 16:37:50,862 - clientify_etl - INFO - ❌ Error 404 en /deals/: {"detail":"Invalid page."}
+2026-01-14 16:37:50,862 - clientify_etl - INFO - 💾 Fecha actual guardada: 2026-01-14T21:37
+2026-01-14 16:37:50,929 - clientify_etl - INFO - 
+🔄 Transformando deals...
+2026-01-14 16:37:51,104 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/deals.csv (6379 registros)
+2026-01-14 16:37:51,104 - clientify_etl - INFO - ✅ deals procesado y guardado.
+2026-01-14 16:37:51,104 - clientify_etl - INFO - 📡 Extrayendo calls...
+2026-01-14 16:37:52,108 - clientify_etl - INFO - 📄 /calls/ - Página 1: 100 registros
+2026-01-14 16:37:53,906 - clientify_etl - INFO - 📄 /calls/ - Página 2: 100 registros
+2026-01-14 16:37:55,188 - clientify_etl - INFO - 📄 /calls/ - Página 3: 100 registros
+2026-01-14 16:37:56,369 - clientify_etl - INFO - 📄 /calls/ - Página 4: 100 registros
+2026-01-14 16:37:57,701 - clientify_etl - INFO - 📄 /calls/ - Página 5: 100 registros
+2026-01-14 16:37:59,076 - clientify_etl - INFO - 📄 /calls/ - Página 6: 100 registros
+2026-01-14 16:38:01,136 - clientify_etl - INFO - 📄 /calls/ - Página 7: 100 registros
+2026-01-14 16:38:02,507 - clientify_etl - INFO - 📄 /calls/ - Página 8: 100 registros
+2026-01-14 16:38:03,898 - clientify_etl - INFO - 📄 /calls/ - Página 9: 100 registros
+2026-01-14 16:38:05,447 - clientify_etl - INFO - 📄 /calls/ - Página 10: 100 registros
+2026-01-14 16:38:06,766 - clientify_etl - INFO - 📄 /calls/ - Página 11: 100 registros
+2026-01-14 16:38:08,144 - clientify_etl - INFO - 📄 /calls/ - Página 12: 100 registros
+2026-01-14 16:38:09,537 - clientify_etl - INFO - 📄 /calls/ - Página 13: 100 registros
+2026-01-14 16:38:10,937 - clientify_etl - INFO - 📄 /calls/ - Página 14: 100 registros
+2026-01-14 16:38:12,186 - clientify_etl - INFO - 📄 /calls/ - Página 15: 100 registros
+2026-01-14 16:38:14,416 - clientify_etl - INFO - 📄 /calls/ - Página 16: 100 registros
+2026-01-14 16:38:15,476 - clientify_etl - INFO - 📄 /calls/ - Página 17: 67 registros
+2026-01-14 16:38:16,202 - clientify_etl - INFO - ❌ Error 404 en /calls/: {"detail":"Invalid page."}
+2026-01-14 16:38:16,203 - clientify_etl - INFO - 💾 Fecha actual guardada: 2026-01-14T21:38
+2026-01-14 16:38:16,214 - clientify_etl - INFO - 
+🔄 Transformando calls...
+2026-01-14 16:38:16,247 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/calls.csv (1667 registros)
+2026-01-14 16:38:16,247 - clientify_etl - INFO - ✅ calls procesado y guardado.
+2026-01-14 16:38:16,247 - clientify_etl - INFO - 📡 Extrayendo tasks...
+2026-01-14 16:38:19,016 - clientify_etl - INFO - 📄 /tasks/ - Página 1: 100 registros
+2026-01-14 16:38:22,154 - clientify_etl - INFO - 📄 /tasks/ - Página 2: 100 registros
+2026-01-14 16:38:25,397 - clientify_etl - INFO - 📄 /tasks/ - Página 3: 100 registros
+2026-01-14 16:38:29,032 - clientify_etl - INFO - 📄 /tasks/ - Página 4: 100 registros
+2026-01-14 16:38:32,225 - clientify_etl - INFO - 📄 /tasks/ - Página 5: 100 registros
+2026-01-14 16:38:35,691 - clientify_etl - INFO - 📄 /tasks/ - Página 6: 100 registros
+2026-01-14 16:38:39,092 - clientify_etl - INFO - 📄 /tasks/ - Página 7: 100 registros
+2026-01-14 16:38:42,464 - clientify_etl - INFO - 📄 /tasks/ - Página 8: 100 registros
+2026-01-14 16:38:45,817 - clientify_etl - INFO - 📄 /tasks/ - Página 9: 100 registros
+2026-01-14 16:38:49,132 - clientify_etl - INFO - 📄 /tasks/ - Página 10: 100 registros
+2026-01-14 16:38:53,474 - clientify_etl - INFO - 📄 /tasks/ - Página 11: 100 registros
+2026-01-14 16:38:56,706 - clientify_etl - INFO - 📄 /tasks/ - Página 12: 100 registros
+2026-01-14 16:39:00,453 - clientify_etl - INFO - 📄 /tasks/ - Página 13: 100 registros
+2026-01-14 16:39:04,163 - clientify_etl - INFO - 📄 /tasks/ - Página 14: 100 registros
+2026-01-14 16:39:07,534 - clientify_etl - INFO - 📄 /tasks/ - Página 15: 100 registros
+2026-01-14 16:39:10,979 - clientify_etl - INFO - 📄 /tasks/ - Página 16: 100 registros
+2026-01-14 16:39:14,377 - clientify_etl - INFO - 📄 /tasks/ - Página 17: 100 registros
+2026-01-14 16:39:17,769 - clientify_etl - INFO - 📄 /tasks/ - Página 18: 100 registros
+2026-01-14 16:39:21,219 - clientify_etl - INFO - 📄 /tasks/ - Página 19: 100 registros
+2026-01-14 16:39:25,441 - clientify_etl - INFO - 📄 /tasks/ - Página 20: 100 registros
+2026-01-14 16:39:28,733 - clientify_etl - INFO - 📄 /tasks/ - Página 21: 100 registros
+2026-01-14 16:39:32,115 - clientify_etl - INFO - 📄 /tasks/ - Página 22: 100 registros
+2026-01-14 16:39:35,362 - clientify_etl - INFO - 📄 /tasks/ - Página 23: 100 registros
+2026-01-14 16:39:38,888 - clientify_etl - INFO - 📄 /tasks/ - Página 24: 100 registros
+2026-01-14 16:39:42,412 - clientify_etl - INFO - 📄 /tasks/ - Página 25: 100 registros
+2026-01-14 16:39:45,997 - clientify_etl - INFO - 📄 /tasks/ - Página 26: 100 registros
+2026-01-14 16:39:49,200 - clientify_etl - INFO - 📄 /tasks/ - Página 27: 100 registros
+2026-01-14 16:39:52,279 - clientify_etl - INFO - 📄 /tasks/ - Página 28: 100 registros
+2026-01-14 16:39:55,622 - clientify_etl - INFO - 📄 /tasks/ - Página 29: 100 registros
+2026-01-14 16:39:58,785 - clientify_etl - INFO - 📄 /tasks/ - Página 30: 100 registros
+2026-01-14 16:40:02,272 - clientify_etl - INFO - 📄 /tasks/ - Página 31: 100 registros
+2026-01-14 16:40:05,834 - clientify_etl - INFO - 📄 /tasks/ - Página 32: 100 registros
+2026-01-14 16:40:09,253 - clientify_etl - INFO - 📄 /tasks/ - Página 33: 100 registros
+2026-01-14 16:40:12,721 - clientify_etl - INFO - 📄 /tasks/ - Página 34: 100 registros
+2026-01-14 16:40:16,339 - clientify_etl - INFO - 📄 /tasks/ - Página 35: 100 registros
+2026-01-14 16:40:19,654 - clientify_etl - INFO - 📄 /tasks/ - Página 36: 100 registros
+2026-01-14 16:40:22,970 - clientify_etl - INFO - 📄 /tasks/ - Página 37: 100 registros
+2026-01-14 16:40:26,550 - clientify_etl - INFO - 📄 /tasks/ - Página 38: 100 registros
+2026-01-14 16:40:29,790 - clientify_etl - INFO - 📄 /tasks/ - Página 39: 100 registros
+2026-01-14 16:40:33,192 - clientify_etl - INFO - 📄 /tasks/ - Página 40: 100 registros
+2026-01-14 16:40:36,884 - clientify_etl - INFO - 📄 /tasks/ - Página 41: 100 registros
+2026-01-14 16:40:40,451 - clientify_etl - INFO - 📄 /tasks/ - Página 42: 100 registros
+2026-01-14 16:40:43,757 - clientify_etl - INFO - 📄 /tasks/ - Página 43: 100 registros
+2026-01-14 16:40:47,443 - clientify_etl - INFO - 📄 /tasks/ - Página 44: 100 registros
+2026-01-14 16:40:50,679 - clientify_etl - INFO - 📄 /tasks/ - Página 45: 100 registros
+2026-01-14 16:40:53,954 - clientify_etl - INFO - 📄 /tasks/ - Página 46: 100 registros
+2026-01-14 16:40:57,176 - clientify_etl - INFO - 📄 /tasks/ - Página 47: 100 registros
+2026-01-14 16:41:00,391 - clientify_etl - INFO - 📄 /tasks/ - Página 48: 100 registros
+2026-01-14 16:41:03,700 - clientify_etl - INFO - 📄 /tasks/ - Página 49: 100 registros
+2026-01-14 16:41:06,977 - clientify_etl - INFO - 📄 /tasks/ - Página 50: 100 registros
+2026-01-14 16:41:10,499 - clientify_etl - INFO - 📄 /tasks/ - Página 51: 100 registros
+2026-01-14 16:41:13,922 - clientify_etl - INFO - 📄 /tasks/ - Página 52: 100 registros
+2026-01-14 16:41:17,026 - clientify_etl - INFO - 📄 /tasks/ - Página 53: 100 registros
+2026-01-14 16:41:20,357 - clientify_etl - INFO - 📄 /tasks/ - Página 54: 100 registros
+2026-01-14 16:41:23,732 - clientify_etl - INFO - 📄 /tasks/ - Página 55: 100 registros
+2026-01-14 16:41:28,354 - clientify_etl - INFO - 📄 /tasks/ - Página 56: 100 registros
+2026-01-14 16:41:31,480 - clientify_etl - INFO - 📄 /tasks/ - Página 57: 100 registros
+2026-01-14 16:41:34,807 - clientify_etl - INFO - 📄 /tasks/ - Página 58: 100 registros
+2026-01-14 16:41:38,148 - clientify_etl - INFO - 📄 /tasks/ - Página 59: 100 registros
+2026-01-14 16:41:41,577 - clientify_etl - INFO - 📄 /tasks/ - Página 60: 100 registros
+2026-01-14 16:41:44,878 - clientify_etl - INFO - 📄 /tasks/ - Página 61: 100 registros
+2026-01-14 16:41:48,098 - clientify_etl - INFO - 📄 /tasks/ - Página 62: 100 registros
+2026-01-14 16:41:51,451 - clientify_etl - INFO - 📄 /tasks/ - Página 63: 100 registros
+2026-01-14 16:41:54,623 - clientify_etl - INFO - 📄 /tasks/ - Página 64: 100 registros
+2026-01-14 16:41:57,999 - clientify_etl - INFO - 📄 /tasks/ - Página 65: 100 registros
+2026-01-14 16:42:01,618 - clientify_etl - INFO - 📄 /tasks/ - Página 66: 100 registros
+2026-01-14 16:42:04,824 - clientify_etl - INFO - 📄 /tasks/ - Página 67: 100 registros
+2026-01-14 16:42:08,248 - clientify_etl - INFO - 📄 /tasks/ - Página 68: 100 registros
+2026-01-14 16:42:11,500 - clientify_etl - INFO - 📄 /tasks/ - Página 69: 100 registros
+2026-01-14 16:42:13,597 - clientify_etl - INFO - 📄 /tasks/ - Página 70: 57 registros
+2026-01-14 16:42:14,334 - clientify_etl - INFO - ❌ Error 404 en /tasks/: {"detail":"Invalid page."}
+2026-01-14 16:42:14,335 - clientify_etl - INFO - 💾 Fecha actual guardada: 2026-01-14T21:42
+2026-01-14 16:42:14,418 - clientify_etl - INFO - 
+🔄 Transformando tasks...
+2026-01-14 16:42:14,665 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/tasks.csv (6957 registros)
+2026-01-14 16:42:14,666 - clientify_etl - INFO - ✅ tasks procesado y guardado.
+2026-01-14 16:42:14,666 - clientify_etl - INFO - 📡 Extrayendo users...
+2026-01-14 16:42:15,011 - clientify_etl - INFO - 📄 /users/ - Página 1: 18 registros
+2026-01-14 16:42:15,732 - clientify_etl - INFO - ❌ Error 404 en /users/: {"detail":"Invalid page."}
+2026-01-14 16:42:15,732 - clientify_etl - INFO - 💾 Fecha actual guardada: 2026-01-14T21:42
+2026-01-14 16:42:15,737 - clientify_etl - INFO - 
+🔄 Transformando users...
+2026-01-14 16:42:15,754 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/users.csv (18 registros)
+2026-01-14 16:42:15,755 - clientify_etl - INFO - ✅ users procesado y guardado.
+2026-01-14 16:42:15,755 - clientify_etl - INFO - 📡 Extrayendo pipelines_stages...
+2026-01-14 16:42:16,117 - clientify_etl - INFO - 📄 /deals/pipelines/stages/ - Página 1: 40 registros
+2026-01-14 16:42:16,816 - clientify_etl - INFO - ❌ Error 404 en /deals/pipelines/stages/: {"detail":"Invalid page."}
+2026-01-14 16:42:16,817 - clientify_etl - INFO - 💾 Fecha actual guardada: 2026-01-14T21:42
+2026-01-14 16:42:16,819 - clientify_etl - INFO - 
+🔄 Transformando pipelines_stages...
+2026-01-14 16:42:16,821 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/pipelines_stages.csv (40 registros)
+2026-01-14 16:42:16,821 - clientify_etl - INFO - ✅ pipelines_stages procesado y guardado.
+2026-01-14 16:42:16,821 - clientify_etl - INFO - 📡 Extrayendo tasks/types...
+2026-01-14 16:42:17,124 - clientify_etl - INFO - 📄 /tasks/types/ - Página 1: 23 registros
+2026-01-14 16:42:17,809 - clientify_etl - INFO - ❌ Error 404 en /tasks/types/: {"detail":"Invalid page."}
+2026-01-14 16:42:17,810 - clientify_etl - INFO - 💾 Fecha actual guardada: 2026-01-14T21:42
+2026-01-14 16:42:17,812 - clientify_etl - INFO - 
+🔄 Transformando tasks/types...
+2026-01-14 16:42:17,814 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/tasks_types.csv (23 registros)
+2026-01-14 16:42:17,814 - clientify_etl - INFO - ✅ tasks/types procesado y guardado.
+2026-01-14 16:42:17,814 - clientify_etl - INFO - 📡 Extrayendo deals_pipelines...
+2026-01-14 16:42:18,129 - clientify_etl - INFO - 📄 /deals/pipelines/ - Página 1: 8 registros
+2026-01-14 16:42:18,840 - clientify_etl - INFO - ❌ Error 404 en /deals/pipelines/: {"detail":"Invalid page."}
+2026-01-14 16:42:18,841 - clientify_etl - INFO - 💾 Fecha actual guardada: 2026-01-14T21:42
+2026-01-14 16:42:18,843 - clientify_etl - INFO - 
+🔄 Transformando deals_pipelines...
+2026-01-14 16:42:18,846 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/deals_pipelines.csv (8 registros)
+2026-01-14 16:42:18,847 - clientify_etl - INFO - ✅ deals_pipelines procesado y guardado.
+2026-01-14 16:42:18,847 - clientify_etl - INFO - 
+ 🛠️Iniciando transfomraciones en: data/raw
+2026-01-14 16:42:18,848 - clientify_etl - INFO - 
+ Procesando: calls.csv 
+2026-01-14 16:42:18,856 - clientify_etl - INFO - Aplicando limpieza específica para calls
+2026-01-14 16:42:18,857 - clientify_etl - INFO - 🔄 Iniciando limpieza para: calls
+2026-01-14 16:42:18,858 - clientify_etl - INFO - 🗑 Columnas eliminadas: []
+2026-01-14 16:42:18,878 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['audio_url', 'integration_id', 'related_companies', 'related_deals', 'related_contacts']
+2026-01-14 16:42:18,884 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['register_date', 'modified_at', 'call_time']
+2026-01-14 16:42:18,906 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\calls.parquet
+2026-01-14 16:42:18,906 - clientify_etl - INFO - 
+ Procesando: companies.csv 
+2026-01-14 16:42:18,954 - clientify_etl - INFO - 🔄 Iniciando limpieza para: companies
+2026-01-14 16:42:18,956 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['picture_url', 'facebook_url', 'linkedin_url', 'twitter_url']
+2026-01-14 16:42:19,022 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['last_viewed', 'last_interaction', 'created', 'modified']
+2026-01-14 16:42:19,052 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\companies.parquet
+2026-01-14 16:42:19,053 - clientify_etl - INFO - 
+ Procesando: contacts.csv 
+2026-01-14 16:42:19,115 - clientify_etl - INFO - 🔄 Iniciando limpieza para: contacts
+2026-01-14 16:42:19,142 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\contacts.parquet
+2026-01-14 16:42:19,143 - clientify_etl - INFO - 
+ Procesando: deals.csv 
+2026-01-14 16:42:19,228 - clientify_etl - INFO - Aplicando limpieza específica para deals
+2026-01-14 16:42:19,319 - clientify_etl - INFO - [deals] Procesando columna custom_fields
+2026-01-14 16:42:19,349 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-14 16:42:21,583 - clientify_etl - INFO - [deals] Filas generadas en deals_custom: 2579
+2026-01-14 16:42:21,611 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-14 16:42:21,623 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_desanidado.parquet
+2026-01-14 16:42:21,624 - clientify_etl - INFO - 
+ Procesando: deals_pipelines.csv 
+2026-01-14 16:42:21,628 - clientify_etl - INFO - 🔄 Iniciando limpieza para: deals_pipelines
+2026-01-14 16:42:21,632 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_pipelines.parquet
+2026-01-14 16:42:21,632 - clientify_etl - INFO - 
+ Procesando: deal_times.csv 
+2026-01-14 16:42:22,038 - clientify_etl - INFO - Aplicando limpieza específica para deal_times
+2026-01-14 16:42:25,003 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deal_times.parquet
+2026-01-14 16:42:25,004 - clientify_etl - INFO - 
+ Procesando: pipelines_stages.csv 
+2026-01-14 16:42:25,007 - clientify_etl - INFO - 🔄 Iniciando limpieza para: pipelines_stages
+2026-01-14 16:42:25,011 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\pipelines_stages.parquet
+2026-01-14 16:42:25,012 - clientify_etl - INFO - 
+ Procesando: tasks.csv 
+2026-01-14 16:42:25,088 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks
+2026-01-14 16:42:25,092 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['additional_option', 'location', 'guest_users', 'tags', 'type_desc']
+2026-01-14 16:42:25,187 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['deals', 'task_type', 'task_stage', 'related_companies']
+2026-01-14 16:42:25,278 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['start_datetime', 'end_datetime', 'due_date', 'created_at', 'created', 'modified', 'completed_date']
+2026-01-14 16:42:25,316 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks.parquet
+2026-01-14 16:42:25,316 - clientify_etl - INFO - 
+ Procesando: tasks_types.csv 
+2026-01-14 16:42:25,320 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks_types
+2026-01-14 16:42:25,323 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks_types.parquet
+2026-01-14 16:42:25,323 - clientify_etl - INFO - 
+ Procesando: users.csv 
+2026-01-14 16:42:25,327 - clientify_etl - INFO - Aplicando limpieza específica para users
+2026-01-14 16:42:25,331 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\users.parquet
+2026-01-14 16:42:25,332 - clientify_etl - INFO - 
+Limpieza completada.
+2026-01-14 16:42:25,332 - clientify_etl - INFO - 
+📤Iniciando carga de datos a la base de datos SQL...
+2026-01-14 16:42:25,334 - clientify_etl - INFO - ✅ Variables de entorno cargadas desde .env
+2026-01-14 16:42:25,353 - clientify_etl - INFO - DB_USERNAME: sa
+2026-01-14 16:42:25,354 - clientify_etl - INFO - DB_PASSWORD: ***
+2026-01-14 16:42:25,354 - clientify_etl - INFO - DB_SERVER_IP: 72.61.70.104
+2026-01-14 16:42:25,354 - clientify_etl - INFO - DB_DATABASE: Clientify;
+2026-01-27 16:01:38,233 - clientify_etl - INFO - 📁 Archivos log en: C:\Users\bi\Documents\etl_clientify\log\etl.log
+2026-01-27 16:01:38,233 - clientify_etl - INFO - Proceso ETL completado.
+2026-01-27 16:01:54,372 - clientify_etl - INFO - 📁 Archivos log en: C:\Users\bi\Documents\etl_clientify\log\etl.log
+2026-01-27 16:01:54,373 - clientify_etl - INFO - 🚀 Iniciando pipeline ETL 
+2026-01-27 16:01:54,375 - clientify_etl - INFO - 📡 Extrayendo users...
+2026-01-27 16:01:55,060 - clientify_etl - INFO - 📄 /users/ - Página 1: 18 registros
+2026-01-27 16:01:55,770 - clientify_etl - INFO - ❌ Error 404 en /users/: {"detail":"Invalid page."}
+2026-01-27 16:01:55,771 - clientify_etl - INFO - 💾 Fecha actual guardada: 2026-01-27T21:01
+2026-01-27 16:01:55,781 - clientify_etl - INFO - 
+🔄 Transformando users...
+2026-01-27 16:01:55,803 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/users.csv (18 registros)
+2026-01-27 16:01:55,805 - clientify_etl - INFO - ✅ users procesado y guardado.
+2026-01-27 16:01:55,805 - clientify_etl - INFO - 
+ 🛠️Iniciando transfomraciones en: data/raw
+2026-01-27 16:01:55,806 - clientify_etl - INFO - 
+ Procesando: calls.csv 
+2026-01-27 16:01:55,819 - clientify_etl - INFO - Aplicando limpieza específica para calls
+2026-01-27 16:01:55,819 - clientify_etl - INFO - 🔄 Iniciando limpieza para: calls
+2026-01-27 16:01:55,821 - clientify_etl - INFO - 🗑 Columnas eliminadas: []
+2026-01-27 16:01:55,827 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['audio_url', 'integration_id', 'related_companies', 'related_deals', 'related_contacts']
+2026-01-27 16:01:55,836 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['register_date', 'modified_at', 'call_time']
+2026-01-27 16:01:55,928 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\calls.parquet
+2026-01-27 16:01:55,929 - clientify_etl - INFO - 
+ Procesando: companies.csv 
+2026-01-27 16:01:55,976 - clientify_etl - INFO - 🔄 Iniciando limpieza para: companies
+2026-01-27 16:01:55,979 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['picture_url', 'facebook_url', 'linkedin_url', 'twitter_url']
+2026-01-27 16:01:56,073 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['last_viewed', 'last_interaction', 'created', 'modified']
+2026-01-27 16:01:56,097 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\companies.parquet
+2026-01-27 16:01:56,097 - clientify_etl - INFO - 
+ Procesando: contacts.csv 
+2026-01-27 16:01:56,158 - clientify_etl - INFO - 🔄 Iniciando limpieza para: contacts
+2026-01-27 16:01:56,185 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\contacts.parquet
+2026-01-27 16:01:56,186 - clientify_etl - INFO - 
+ Procesando: deals.csv 
+2026-01-27 16:01:56,252 - clientify_etl - INFO - Aplicando limpieza específica para deals
+2026-01-27 16:01:56,345 - clientify_etl - INFO - [deals] Procesando columna custom_fields
+2026-01-27 16:01:56,370 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-27 16:01:58,374 - clientify_etl - INFO - [deals] Filas generadas en deals_custom: 2579
+2026-01-27 16:01:58,400 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-27 16:01:58,413 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_desanidado.parquet
+2026-01-27 16:01:58,413 - clientify_etl - INFO - 
+ Procesando: deals_pipelines.csv 
+2026-01-27 16:01:58,422 - clientify_etl - INFO - 🔄 Iniciando limpieza para: deals_pipelines
+2026-01-27 16:01:58,425 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_pipelines.parquet
+2026-01-27 16:01:58,425 - clientify_etl - INFO - 
+ Procesando: deal_times.csv 
+2026-01-27 16:01:58,801 - clientify_etl - INFO - Aplicando limpieza específica para deal_times
+2026-01-27 16:02:01,829 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deal_times.parquet
+2026-01-27 16:02:01,829 - clientify_etl - INFO - 
+ Procesando: pipelines_stages.csv 
+2026-01-27 16:02:01,837 - clientify_etl - INFO - 🔄 Iniciando limpieza para: pipelines_stages
+2026-01-27 16:02:01,841 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\pipelines_stages.parquet
+2026-01-27 16:02:01,841 - clientify_etl - INFO - 
+ Procesando: tasks.csv 
+2026-01-27 16:02:01,926 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks
+2026-01-27 16:02:01,929 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['additional_option', 'location', 'guest_users', 'tags', 'type_desc']
+2026-01-27 16:02:02,061 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['deals', 'task_type', 'task_stage', 'related_companies']
+2026-01-27 16:02:02,134 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['start_datetime', 'end_datetime', 'due_date', 'created_at', 'created', 'modified', 'completed_date']
+2026-01-27 16:02:02,169 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks.parquet
+2026-01-27 16:02:02,170 - clientify_etl - INFO - 
+ Procesando: tasks_types.csv 
+2026-01-27 16:02:02,180 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks_types
+2026-01-27 16:02:02,184 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks_types.parquet
+2026-01-27 16:02:02,184 - clientify_etl - INFO - 
+ Procesando: users.csv 
+2026-01-27 16:02:02,186 - clientify_etl - INFO - Aplicando limpieza específica para users
+2026-01-27 16:02:02,190 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\users.parquet
+2026-01-27 16:02:02,191 - clientify_etl - INFO - 
+Limpieza completada.
+2026-01-27 16:02:02,192 - clientify_etl - INFO - 
+📤Iniciando carga de datos a la base de datos SQL...
+2026-01-27 16:02:02,193 - clientify_etl - INFO - ✅ Variables de entorno cargadas desde .env
+2026-01-27 16:02:02,268 - clientify_etl - INFO - DB_USERNAME: Operativo
+2026-01-27 16:02:02,268 - clientify_etl - INFO - DB_PASSWORD: ***
+2026-01-27 16:02:02,268 - clientify_etl - INFO - DB_SERVER_IP: 172.16.10.54
+2026-01-27 16:02:02,268 - clientify_etl - INFO - DB_DATABASE: Clientify
+2026-01-27 16:02:02,368 - clientify_etl - ERROR - Error al cargar tabla 'calls': (pyodbc.InterfaceError) ('IM002', '[IM002] [Microsoft][Administrador de controladores ODBC] No se encuentra el nombre del origen de datos y no se especificó ningún controlador predeterminado (0) (SQLDriverConnect)')
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2026-01-30 15:35:28,343 - clientify_etl - INFO - 📁 Archivos log en: C:\Users\bi\Documents\etl_clientify\log\etl.log
+2026-01-30 15:35:28,344 - clientify_etl - INFO - 
+🔄 Transformando deal_times...
+2026-01-30 15:35:28,422 - clientify_etl - INFO - 📌 Se encontraron 6379 IDs
+2026-01-30 15:35:29,358 - clientify_etl - INFO - Fetching https://api.clientify.net/v1/deals/25982188
+2026-01-30 15:35:29,839 - clientify_etl - INFO - Fetching https://api.clientify.net/v1/deals/25996959
+2026-01-30 15:35:30,356 - clientify_etl - INFO - Fetching https://api.clientify.net/v1/deals/25996891
+2026-01-30 15:35:30,833 - clientify_etl - INFO - Fetching https://api.clientify.net/v1/deals/25996843
+2026-01-30 15:35:31,535 - clientify_etl - INFO - Fetching https://api.clientify.net/v1/deals/25996832
+2026-01-30 15:35:32,093 - clientify_etl - INFO - Fetching https://api.clientify.net/v1/deals/25996770
+2026-01-30 15:35:32,786 - clientify_etl - INFO - Fetching https://api.clientify.net/v1/deals/21395842
+2026-01-30 15:35:33,418 - clientify_etl - INFO - Fetching https://api.clientify.net/v1/deals/25996686
+2026-01-30 15:35:33,928 - clientify_etl - INFO - Fetching https://api.clientify.net/v1/deals/25996566
+2026-01-30 15:35:34,420 - clientify_etl - INFO - Fetching https://api.clientify.net/v1/deals/25996521
+2026-01-30 15:35:34,897 - clientify_etl - INFO - Fetching https://api.clientify.net/v1/deals/25996483
+2026-01-30 15:35:35,503 - clientify_etl - INFO - Fetching https://api.clientify.net/v1/deals/25837126
+2026-01-30 15:35:36,021 - clientify_etl - INFO - Fetching https://api.clientify.net/v1/deals/25996406
+2026-01-30 15:35:36,570 - clientify_etl - INFO - Fetching https://api.clientify.net/v1/deals/25996342
+2026-01-30 15:35:37,085 - clientify_etl - INFO - Fetching https://api.clientify.net/v1/deals/25968108
+2026-01-30 15:35:37,744 - clientify_etl - INFO - Fetching https://api.clientify.net/v1/deals/25968011
+2026-01-30 15:35:38,254 - clientify_etl - INFO - Fetching https://api.clientify.net/v1/deals/25967881
+2026-01-30 15:36:52,643 - clientify_etl - INFO - 📁 Archivos log en: C:\Users\bi\Documents\etl_clientify\log\etl.log
+2026-01-30 15:36:52,644 - clientify_etl - INFO - 
+🔄 Transformando deal_times...
+2026-01-30 15:36:54,893 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/deal_times.csv (11758 registros)
+2026-01-30 15:36:54,906 - clientify_etl - INFO - ✅ deal_times procesado y guardado.
+2026-01-30 15:36:54,916 - clientify_etl - INFO - 
+ 🛠️Iniciando transfomraciones en: data/raw
+2026-01-30 15:36:54,917 - clientify_etl - INFO - 
+ Procesando: calls.csv 
+2026-01-30 15:36:54,928 - clientify_etl - INFO - Aplicando limpieza específica para calls
+2026-01-30 15:36:54,928 - clientify_etl - INFO - 🔄 Iniciando limpieza para: calls
+2026-01-30 15:36:54,929 - clientify_etl - INFO - 🗑 Columnas eliminadas: []
+2026-01-30 15:36:54,934 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['audio_url', 'integration_id', 'related_companies', 'related_deals', 'related_contacts']
+2026-01-30 15:36:54,939 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['register_date', 'modified_at', 'call_time']
+2026-01-30 15:36:55,053 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\calls.parquet
+2026-01-30 15:36:55,053 - clientify_etl - INFO - 
+ Procesando: companies.csv 
+2026-01-30 15:36:55,099 - clientify_etl - INFO - 🔄 Iniciando limpieza para: companies
+2026-01-30 15:36:55,101 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['picture_url', 'facebook_url', 'linkedin_url', 'twitter_url']
+2026-01-30 15:36:55,177 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['last_viewed', 'last_interaction', 'created', 'modified']
+2026-01-30 15:36:55,202 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\companies.parquet
+2026-01-30 15:36:55,202 - clientify_etl - INFO - 
+ Procesando: contacts.csv 
+2026-01-30 15:36:55,262 - clientify_etl - INFO - 🔄 Iniciando limpieza para: contacts
+2026-01-30 15:36:55,294 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\contacts.parquet
+2026-01-30 15:36:55,294 - clientify_etl - INFO - 
+ Procesando: deals.csv 
+2026-01-30 15:36:55,360 - clientify_etl - INFO - Aplicando limpieza específica para deals
+2026-01-30 15:36:55,461 - clientify_etl - INFO - [deals] Procesando columna custom_fields
+2026-01-30 15:36:55,490 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:36:58,031 - clientify_etl - INFO - [deals] Filas generadas en deals_custom: 2579
+2026-01-30 15:36:58,070 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:36:58,090 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_desanidado.parquet
+2026-01-30 15:36:58,090 - clientify_etl - INFO - 
+ Procesando: deals_pipelines.csv 
+2026-01-30 15:36:58,096 - clientify_etl - INFO - 🔄 Iniciando limpieza para: deals_pipelines
+2026-01-30 15:36:58,101 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_pipelines.parquet
+2026-01-30 15:36:58,101 - clientify_etl - INFO - 
+ Procesando: deal_times.csv 
+2026-01-30 15:36:59,150 - clientify_etl - INFO - Aplicando limpieza específica para deal_times
+2026-01-30 15:37:04,821 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deal_times.parquet
+2026-01-30 15:37:04,822 - clientify_etl - INFO - 
+ Procesando: pipelines_stages.csv 
+2026-01-30 15:37:04,827 - clientify_etl - INFO - 🔄 Iniciando limpieza para: pipelines_stages
+2026-01-30 15:37:04,831 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\pipelines_stages.parquet
+2026-01-30 15:37:04,832 - clientify_etl - INFO - 
+ Procesando: tasks.csv 
+2026-01-30 15:37:04,916 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks
+2026-01-30 15:37:04,918 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['additional_option', 'location', 'guest_users', 'tags', 'type_desc']
+2026-01-30 15:37:05,032 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['deals', 'task_type', 'task_stage', 'related_companies']
+2026-01-30 15:37:05,111 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['start_datetime', 'end_datetime', 'due_date', 'created_at', 'created', 'modified', 'completed_date']
+2026-01-30 15:37:05,152 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks.parquet
+2026-01-30 15:37:05,153 - clientify_etl - INFO - 
+ Procesando: tasks_types.csv 
+2026-01-30 15:37:05,158 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks_types
+2026-01-30 15:37:05,161 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks_types.parquet
+2026-01-30 15:37:05,162 - clientify_etl - INFO - 
+ Procesando: users.csv 
+2026-01-30 15:37:05,165 - clientify_etl - INFO - Aplicando limpieza específica para users
+2026-01-30 15:37:05,169 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\users.parquet
+2026-01-30 15:37:05,171 - clientify_etl - INFO - 
+Limpieza completada.
+2026-01-30 15:37:05,172 - clientify_etl - INFO - 
+📤Iniciando carga de datos a la base de datos SQL...
+2026-01-30 15:37:05,173 - clientify_etl - INFO - ✅ Variables de entorno cargadas desde .env
+2026-01-30 15:37:05,248 - clientify_etl - INFO - DB_USERNAME: Operativo
+2026-01-30 15:37:05,249 - clientify_etl - INFO - DB_PASSWORD: ***
+2026-01-30 15:37:05,249 - clientify_etl - INFO - DB_SERVER_IP: 172.16.10.54
+2026-01-30 15:37:05,249 - clientify_etl - INFO - DB_DATABASE: Clientify
+2026-01-30 15:37:05,359 - clientify_etl - ERROR - Error al cargar tabla 'calls': (pyodbc.InterfaceError) ('IM002', '[IM002] [Microsoft][Administrador de controladores ODBC] No se encuentra el nombre del origen de datos y no se especificó ningún controlador predeterminado (0) (SQLDriverConnect)')
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2026-01-30 15:41:04,335 - clientify_etl - INFO - 📁 Archivos log en: C:\Users\bi\Documents\etl_clientify\log\etl.log
+2026-01-30 15:41:04,336 - clientify_etl - INFO - 
+🔄 Transformando deal_times...
+2026-01-30 15:41:07,489 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/deal_times.csv (23516 registros)
+2026-01-30 15:41:07,499 - clientify_etl - INFO - ✅ deal_times procesado y guardado.
+2026-01-30 15:41:07,511 - clientify_etl - INFO - 
+ 🛠️Iniciando transfomraciones en: data/raw
+2026-01-30 15:41:07,512 - clientify_etl - INFO - 
+ Procesando: calls.csv 
+2026-01-30 15:41:07,521 - clientify_etl - INFO - Aplicando limpieza específica para calls
+2026-01-30 15:41:07,521 - clientify_etl - INFO - 🔄 Iniciando limpieza para: calls
+2026-01-30 15:41:07,522 - clientify_etl - INFO - 🗑 Columnas eliminadas: []
+2026-01-30 15:41:07,545 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['audio_url', 'integration_id', 'related_companies', 'related_deals', 'related_contacts']
+2026-01-30 15:41:07,550 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['register_date', 'modified_at', 'call_time']
+2026-01-30 15:41:07,573 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\calls.parquet
+2026-01-30 15:41:07,573 - clientify_etl - INFO - 
+ Procesando: companies.csv 
+2026-01-30 15:41:07,613 - clientify_etl - INFO - 🔄 Iniciando limpieza para: companies
+2026-01-30 15:41:07,615 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['picture_url', 'facebook_url', 'linkedin_url', 'twitter_url']
+2026-01-30 15:41:07,678 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['last_viewed', 'last_interaction', 'created', 'modified']
+2026-01-30 15:41:07,702 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\companies.parquet
+2026-01-30 15:41:07,702 - clientify_etl - INFO - 
+ Procesando: contacts.csv 
+2026-01-30 15:41:07,750 - clientify_etl - INFO - 🔄 Iniciando limpieza para: contacts
+2026-01-30 15:41:07,778 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\contacts.parquet
+2026-01-30 15:41:07,778 - clientify_etl - INFO - 
+ Procesando: deals.csv 
+2026-01-30 15:41:07,839 - clientify_etl - INFO - Aplicando limpieza específica para deals
+2026-01-30 15:41:07,930 - clientify_etl - INFO - [deals] Procesando columna custom_fields
+2026-01-30 15:41:07,956 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:41:09,708 - clientify_etl - INFO - [deals] Filas generadas en deals_custom: 2579
+2026-01-30 15:41:09,735 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:41:09,749 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_desanidado.parquet
+2026-01-30 15:41:09,749 - clientify_etl - INFO - 
+ Procesando: deals_pipelines.csv 
+2026-01-30 15:41:09,752 - clientify_etl - INFO - 🔄 Iniciando limpieza para: deals_pipelines
+2026-01-30 15:41:09,755 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_pipelines.parquet
+2026-01-30 15:41:09,755 - clientify_etl - INFO - 
+ Procesando: deal_times.csv 
+2026-01-30 15:41:10,874 - clientify_etl - INFO - Aplicando limpieza específica para deal_times
+2026-01-30 15:41:21,684 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deal_times.parquet
+2026-01-30 15:41:21,684 - clientify_etl - INFO - 
+ Procesando: pipelines_stages.csv 
+2026-01-30 15:41:21,688 - clientify_etl - INFO - 🔄 Iniciando limpieza para: pipelines_stages
+2026-01-30 15:41:21,692 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\pipelines_stages.parquet
+2026-01-30 15:41:21,692 - clientify_etl - INFO - 
+ Procesando: tasks.csv 
+2026-01-30 15:41:21,768 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks
+2026-01-30 15:41:21,771 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['additional_option', 'location', 'guest_users', 'tags', 'type_desc']
+2026-01-30 15:41:21,871 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['deals', 'task_type', 'task_stage', 'related_companies']
+2026-01-30 15:41:21,950 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['start_datetime', 'end_datetime', 'due_date', 'created_at', 'created', 'modified', 'completed_date']
+2026-01-30 15:41:21,991 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks.parquet
+2026-01-30 15:41:21,991 - clientify_etl - INFO - 
+ Procesando: tasks_types.csv 
+2026-01-30 15:41:21,995 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks_types
+2026-01-30 15:41:22,001 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks_types.parquet
+2026-01-30 15:41:22,001 - clientify_etl - INFO - 
+ Procesando: users.csv 
+2026-01-30 15:41:22,004 - clientify_etl - INFO - Aplicando limpieza específica para users
+2026-01-30 15:41:22,007 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\users.parquet
+2026-01-30 15:41:22,009 - clientify_etl - INFO - 
+Limpieza completada.
+2026-01-30 15:41:22,009 - clientify_etl - INFO - 
+📤Iniciando carga de datos a la base de datos SQL...
+2026-01-30 15:41:22,011 - clientify_etl - INFO - ✅ Variables de entorno cargadas desde .env
+2026-01-30 15:41:22,035 - clientify_etl - INFO - DB_USERNAME: Operativo
+2026-01-30 15:41:22,035 - clientify_etl - INFO - DB_PASSWORD: ***
+2026-01-30 15:41:22,035 - clientify_etl - INFO - DB_SERVER_IP: 172.16.10.54
+2026-01-30 15:41:22,036 - clientify_etl - INFO - DB_DATABASE: Clientify
+2026-01-30 15:41:22,060 - clientify_etl - ERROR - Error al cargar tabla 'calls': (pyodbc.InterfaceError) ('IM002', '[IM002] [Microsoft][Administrador de controladores ODBC] No se encuentra el nombre del origen de datos y no se especificó ningún controlador predeterminado (0) (SQLDriverConnect)')
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2026-01-30 15:45:00,908 - clientify_etl - INFO - 📁 Archivos log en: C:\Users\bi\Documents\etl_clientify\log\etl.log
+2026-01-30 15:45:00,908 - clientify_etl - INFO - 
+🔄 Transformando deal_times...
+2026-01-30 15:45:05,747 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/deal_times.csv (29394 registros)
+2026-01-30 15:45:05,768 - clientify_etl - INFO - ✅ deal_times procesado y guardado.
+2026-01-30 15:45:05,792 - clientify_etl - INFO - 
+ 🛠️Iniciando transfomraciones en: data/raw
+2026-01-30 15:45:05,793 - clientify_etl - INFO - 
+ Procesando: calls.csv 
+2026-01-30 15:45:05,803 - clientify_etl - INFO - Aplicando limpieza específica para calls
+2026-01-30 15:45:05,804 - clientify_etl - INFO - 🔄 Iniciando limpieza para: calls
+2026-01-30 15:45:05,804 - clientify_etl - INFO - 🗑 Columnas eliminadas: []
+2026-01-30 15:45:05,829 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['audio_url', 'integration_id', 'related_companies', 'related_deals', 'related_contacts']
+2026-01-30 15:45:05,833 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['register_date', 'modified_at', 'call_time']
+2026-01-30 15:45:05,859 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\calls.parquet
+2026-01-30 15:45:05,859 - clientify_etl - INFO - 
+ Procesando: companies.csv 
+2026-01-30 15:45:05,900 - clientify_etl - INFO - 🔄 Iniciando limpieza para: companies
+2026-01-30 15:45:05,902 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['picture_url', 'facebook_url', 'linkedin_url', 'twitter_url']
+2026-01-30 15:45:05,966 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['last_viewed', 'last_interaction', 'created', 'modified']
+2026-01-30 15:45:05,989 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\companies.parquet
+2026-01-30 15:45:05,989 - clientify_etl - INFO - 
+ Procesando: contacts.csv 
+2026-01-30 15:45:06,034 - clientify_etl - INFO - 🔄 Iniciando limpieza para: contacts
+2026-01-30 15:45:06,063 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\contacts.parquet
+2026-01-30 15:45:06,063 - clientify_etl - INFO - 
+ Procesando: deals.csv 
+2026-01-30 15:45:06,123 - clientify_etl - INFO - Aplicando limpieza específica para deals
+2026-01-30 15:45:06,212 - clientify_etl - INFO - [deals] Procesando columna custom_fields
+2026-01-30 15:45:06,238 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:45:08,113 - clientify_etl - INFO - [deals] Filas generadas en deals_custom: 2579
+2026-01-30 15:45:08,139 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:45:08,154 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_desanidado.parquet
+2026-01-30 15:45:08,155 - clientify_etl - INFO - 
+ Procesando: deals_pipelines.csv 
+2026-01-30 15:45:08,157 - clientify_etl - INFO - 🔄 Iniciando limpieza para: deals_pipelines
+2026-01-30 15:45:08,160 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_pipelines.parquet
+2026-01-30 15:45:08,160 - clientify_etl - INFO - 
+ Procesando: deal_times.csv 
+2026-01-30 15:45:09,385 - clientify_etl - INFO - Aplicando limpieza específica para deal_times
+2026-01-30 15:45:23,785 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deal_times.parquet
+2026-01-30 15:45:23,786 - clientify_etl - INFO - 
+ Procesando: pipelines_stages.csv 
+2026-01-30 15:45:23,790 - clientify_etl - INFO - 🔄 Iniciando limpieza para: pipelines_stages
+2026-01-30 15:45:23,794 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\pipelines_stages.parquet
+2026-01-30 15:45:23,794 - clientify_etl - INFO - 
+ Procesando: tasks.csv 
+2026-01-30 15:45:23,865 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks
+2026-01-30 15:45:23,868 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['additional_option', 'location', 'guest_users', 'tags', 'type_desc']
+2026-01-30 15:45:23,975 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['deals', 'task_type', 'task_stage', 'related_companies']
+2026-01-30 15:45:24,088 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['start_datetime', 'end_datetime', 'due_date', 'created_at', 'created', 'modified', 'completed_date']
+2026-01-30 15:45:24,145 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks.parquet
+2026-01-30 15:45:24,145 - clientify_etl - INFO - 
+ Procesando: tasks_types.csv 
+2026-01-30 15:45:24,151 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks_types
+2026-01-30 15:45:24,155 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks_types.parquet
+2026-01-30 15:45:24,155 - clientify_etl - INFO - 
+ Procesando: users.csv 
+2026-01-30 15:45:24,158 - clientify_etl - INFO - Aplicando limpieza específica para users
+2026-01-30 15:45:24,164 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\users.parquet
+2026-01-30 15:45:24,166 - clientify_etl - INFO - 
+Limpieza completada.
+2026-01-30 15:45:24,166 - clientify_etl - INFO - 
+📤Iniciando carga de datos a la base de datos SQL...
+2026-01-30 15:45:24,168 - clientify_etl - INFO - ✅ Variables de entorno cargadas desde .env
+2026-01-30 15:45:24,189 - clientify_etl - INFO - DB_USERNAME: Operativo
+2026-01-30 15:45:24,189 - clientify_etl - INFO - DB_PASSWORD: ***
+2026-01-30 15:45:24,189 - clientify_etl - INFO - DB_SERVER_IP: 172.16.10.54
+2026-01-30 15:45:24,190 - clientify_etl - INFO - DB_DATABASE: Clientify
+2026-01-30 15:45:24,226 - clientify_etl - ERROR - Error al cargar tabla 'calls': (pyodbc.InterfaceError) ('IM002', '[IM002] [Microsoft][Administrador de controladores ODBC] No se encuentra el nombre del origen de datos y no se especificó ningún controlador predeterminado (0) (SQLDriverConnect)')
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2026-01-30 15:46:37,978 - clientify_etl - INFO - 📁 Archivos log en: C:\Users\bi\Documents\etl_clientify\log\etl.log
+2026-01-30 15:46:37,978 - clientify_etl - INFO - 
+🔄 Transformando deal_times...
+2026-01-30 15:46:43,695 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/deal_times.csv (29394 registros)
+2026-01-30 15:46:43,722 - clientify_etl - INFO - ✅ deal_times procesado y guardado.
+2026-01-30 15:46:43,745 - clientify_etl - INFO - 
+ 🛠️Iniciando transfomraciones en: data/raw
+2026-01-30 15:46:43,750 - clientify_etl - INFO - 
+ Procesando: calls.csv 
+2026-01-30 15:46:43,759 - clientify_etl - INFO - Aplicando limpieza específica para calls
+2026-01-30 15:46:43,759 - clientify_etl - INFO - 🔄 Iniciando limpieza para: calls
+2026-01-30 15:46:43,759 - clientify_etl - INFO - 🗑 Columnas eliminadas: []
+2026-01-30 15:46:43,784 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['audio_url', 'integration_id', 'related_companies', 'related_deals', 'related_contacts']
+2026-01-30 15:46:43,790 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['register_date', 'modified_at', 'call_time']
+2026-01-30 15:46:43,811 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\calls.parquet
+2026-01-30 15:46:43,811 - clientify_etl - INFO - 
+ Procesando: companies.csv 
+2026-01-30 15:46:43,869 - clientify_etl - INFO - 🔄 Iniciando limpieza para: companies
+2026-01-30 15:46:43,871 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['picture_url', 'facebook_url', 'linkedin_url', 'twitter_url']
+2026-01-30 15:46:43,957 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['last_viewed', 'last_interaction', 'created', 'modified']
+2026-01-30 15:46:43,980 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\companies.parquet
+2026-01-30 15:46:43,980 - clientify_etl - INFO - 
+ Procesando: contacts.csv 
+2026-01-30 15:46:44,036 - clientify_etl - INFO - 🔄 Iniciando limpieza para: contacts
+2026-01-30 15:46:44,068 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\contacts.parquet
+2026-01-30 15:46:44,068 - clientify_etl - INFO - 
+ Procesando: deals.csv 
+2026-01-30 15:46:44,135 - clientify_etl - INFO - Aplicando limpieza específica para deals
+2026-01-30 15:46:44,241 - clientify_etl - INFO - [deals] Procesando columna custom_fields
+2026-01-30 15:46:44,271 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:46:46,628 - clientify_etl - INFO - [deals] Filas generadas en deals_custom: 2579
+2026-01-30 15:46:46,654 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:46:46,668 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_desanidado.parquet
+2026-01-30 15:46:46,668 - clientify_etl - INFO - 
+ Procesando: deals_pipelines.csv 
+2026-01-30 15:46:46,669 - clientify_etl - INFO - 🔄 Iniciando limpieza para: deals_pipelines
+2026-01-30 15:46:46,671 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_pipelines.parquet
+2026-01-30 15:46:46,671 - clientify_etl - INFO - 
+ Procesando: deal_times.csv 
+2026-01-30 15:46:48,021 - clientify_etl - INFO - Aplicando limpieza específica para deal_times
+2026-01-30 15:47:02,757 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deal_times.parquet
+2026-01-30 15:47:02,757 - clientify_etl - INFO - 
+ Procesando: pipelines_stages.csv 
+2026-01-30 15:47:02,761 - clientify_etl - INFO - 🔄 Iniciando limpieza para: pipelines_stages
+2026-01-30 15:47:02,766 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\pipelines_stages.parquet
+2026-01-30 15:47:02,767 - clientify_etl - INFO - 
+ Procesando: tasks.csv 
+2026-01-30 15:47:02,833 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks
+2026-01-30 15:47:02,836 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['additional_option', 'location', 'guest_users', 'tags', 'type_desc']
+2026-01-30 15:47:02,934 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['deals', 'task_type', 'task_stage', 'related_companies']
+2026-01-30 15:47:03,017 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['start_datetime', 'end_datetime', 'due_date', 'created_at', 'created', 'modified', 'completed_date']
+2026-01-30 15:47:03,065 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks.parquet
+2026-01-30 15:47:03,065 - clientify_etl - INFO - 
+ Procesando: tasks_types.csv 
+2026-01-30 15:47:03,067 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks_types
+2026-01-30 15:47:03,072 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks_types.parquet
+2026-01-30 15:47:03,073 - clientify_etl - INFO - 
+ Procesando: users.csv 
+2026-01-30 15:47:03,075 - clientify_etl - INFO - Aplicando limpieza específica para users
+2026-01-30 15:47:03,078 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\users.parquet
+2026-01-30 15:47:03,080 - clientify_etl - INFO - 
+Limpieza completada.
+2026-01-30 15:47:03,081 - clientify_etl - INFO - 
+📤Iniciando carga de datos a la base de datos SQL...
+2026-01-30 15:47:03,082 - clientify_etl - INFO - ✅ Variables de entorno cargadas desde .env
+2026-01-30 15:47:03,100 - clientify_etl - INFO - DB_USERNAME: Operativo
+2026-01-30 15:47:03,100 - clientify_etl - INFO - DB_PASSWORD: ***
+2026-01-30 15:47:03,100 - clientify_etl - INFO - DB_SERVER_IP: 172.16.10.54
+2026-01-30 15:47:03,100 - clientify_etl - INFO - DB_DATABASE: Clientify
+2026-01-30 15:47:03,134 - clientify_etl - ERROR - Error al cargar tabla 'calls': (pyodbc.InterfaceError) ('IM002', '[IM002] [Microsoft][Administrador de controladores ODBC] No se encuentra el nombre del origen de datos y no se especificó ningún controlador predeterminado (0) (SQLDriverConnect)')
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2026-01-30 15:48:49,381 - clientify_etl - INFO - 📁 Archivos log en: C:\Users\bi\Documents\etl_clientify\log\etl.log
+2026-01-30 15:48:49,382 - clientify_etl - INFO - 
+🔄 Transformando deal_times...
+2026-01-30 15:48:54,743 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/deal_times.csv (29394 registros)
+2026-01-30 15:48:54,765 - clientify_etl - INFO - ✅ deal_times procesado y guardado.
+2026-01-30 15:48:54,785 - clientify_etl - INFO - 
+ 🛠️Iniciando transfomraciones en: data/raw
+2026-01-30 15:48:54,786 - clientify_etl - INFO - 
+ Procesando: calls.csv 
+2026-01-30 15:48:54,798 - clientify_etl - INFO - Aplicando limpieza específica para calls
+2026-01-30 15:48:54,798 - clientify_etl - INFO - 🔄 Iniciando limpieza para: calls
+2026-01-30 15:48:54,799 - clientify_etl - INFO - 🗑 Columnas eliminadas: []
+2026-01-30 15:48:54,821 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['audio_url', 'integration_id', 'related_companies', 'related_deals', 'related_contacts']
+2026-01-30 15:48:54,829 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['register_date', 'modified_at', 'call_time']
+2026-01-30 15:48:54,849 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\calls.parquet
+2026-01-30 15:48:54,849 - clientify_etl - INFO - 
+ Procesando: companies.csv 
+2026-01-30 15:48:54,894 - clientify_etl - INFO - 🔄 Iniciando limpieza para: companies
+2026-01-30 15:48:54,896 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['picture_url', 'facebook_url', 'linkedin_url', 'twitter_url']
+2026-01-30 15:48:54,960 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['last_viewed', 'last_interaction', 'created', 'modified']
+2026-01-30 15:48:54,981 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\companies.parquet
+2026-01-30 15:48:54,981 - clientify_etl - INFO - 
+ Procesando: contacts.csv 
+2026-01-30 15:48:55,048 - clientify_etl - INFO - 🔄 Iniciando limpieza para: contacts
+2026-01-30 15:48:55,079 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\contacts.parquet
+2026-01-30 15:48:55,079 - clientify_etl - INFO - 
+ Procesando: deals.csv 
+2026-01-30 15:48:55,140 - clientify_etl - INFO - Aplicando limpieza específica para deals
+2026-01-30 15:48:55,236 - clientify_etl - INFO - [deals] Procesando columna custom_fields
+2026-01-30 15:48:55,268 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:48:57,181 - clientify_etl - INFO - [deals] Filas generadas en deals_custom: 2579
+2026-01-30 15:48:57,208 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:48:57,220 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_desanidado.parquet
+2026-01-30 15:48:57,220 - clientify_etl - INFO - 
+ Procesando: deals_pipelines.csv 
+2026-01-30 15:48:57,223 - clientify_etl - INFO - 🔄 Iniciando limpieza para: deals_pipelines
+2026-01-30 15:48:57,227 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_pipelines.parquet
+2026-01-30 15:48:57,227 - clientify_etl - INFO - 
+ Procesando: deal_times.csv 
+2026-01-30 15:48:58,506 - clientify_etl - INFO - Aplicando limpieza específica para deal_times
+2026-01-30 15:49:12,371 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deal_times.parquet
+2026-01-30 15:49:12,371 - clientify_etl - INFO - 
+ Procesando: pipelines_stages.csv 
+2026-01-30 15:49:12,375 - clientify_etl - INFO - 🔄 Iniciando limpieza para: pipelines_stages
+2026-01-30 15:49:12,388 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\pipelines_stages.parquet
+2026-01-30 15:49:12,388 - clientify_etl - INFO - 
+ Procesando: tasks.csv 
+2026-01-30 15:49:12,467 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks
+2026-01-30 15:49:12,471 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['additional_option', 'location', 'guest_users', 'tags', 'type_desc']
+2026-01-30 15:49:12,569 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['deals', 'task_type', 'task_stage', 'related_companies']
+2026-01-30 15:49:12,642 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['start_datetime', 'end_datetime', 'due_date', 'created_at', 'created', 'modified', 'completed_date']
+2026-01-30 15:49:12,681 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks.parquet
+2026-01-30 15:49:12,682 - clientify_etl - INFO - 
+ Procesando: tasks_types.csv 
+2026-01-30 15:49:12,687 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks_types
+2026-01-30 15:49:12,690 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks_types.parquet
+2026-01-30 15:49:12,691 - clientify_etl - INFO - 
+ Procesando: users.csv 
+2026-01-30 15:49:12,693 - clientify_etl - INFO - Aplicando limpieza específica para users
+2026-01-30 15:49:12,697 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\users.parquet
+2026-01-30 15:49:12,698 - clientify_etl - INFO - 
+Limpieza completada.
+2026-01-30 15:49:12,698 - clientify_etl - INFO - 
+📤Iniciando carga de datos a la base de datos SQL...
+2026-01-30 15:49:12,701 - clientify_etl - INFO - ✅ Variables de entorno cargadas desde .env
+2026-01-30 15:49:12,724 - clientify_etl - INFO - DB_USERNAME: Operativo
+2026-01-30 15:49:12,725 - clientify_etl - INFO - DB_PASSWORD: ***
+2026-01-30 15:49:12,725 - clientify_etl - INFO - DB_SERVER_IP: 172.16.10.54
+2026-01-30 15:49:12,725 - clientify_etl - INFO - DB_DATABASE: Clientify
+2026-01-30 15:49:12,750 - clientify_etl - ERROR - Error al cargar tabla 'calls': (pyodbc.InterfaceError) ('IM002', '[IM002] [Microsoft][Administrador de controladores ODBC] No se encuentra el nombre del origen de datos y no se especificó ningún controlador predeterminado (0) (SQLDriverConnect)')
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2026-01-30 15:51:13,623 - clientify_etl - INFO - 📁 Archivos log en: C:\Users\bi\Documents\etl_clientify\log\etl.log
+2026-01-30 15:51:13,623 - clientify_etl - INFO - 
+🔄 Transformando deal_times...
+2026-01-30 15:51:18,804 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/deal_times.csv (29394 registros)
+2026-01-30 15:51:18,824 - clientify_etl - INFO - ✅ deal_times procesado y guardado.
+2026-01-30 15:51:18,848 - clientify_etl - INFO - 
+ 🛠️Iniciando transfomraciones en: data/raw
+2026-01-30 15:51:18,849 - clientify_etl - INFO - 
+ Procesando: calls.csv 
+2026-01-30 15:51:18,859 - clientify_etl - INFO - Aplicando limpieza específica para calls
+2026-01-30 15:51:18,859 - clientify_etl - INFO - 🔄 Iniciando limpieza para: calls
+2026-01-30 15:51:18,860 - clientify_etl - INFO - 🗑 Columnas eliminadas: []
+2026-01-30 15:51:18,884 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['audio_url', 'integration_id', 'related_companies', 'related_deals', 'related_contacts']
+2026-01-30 15:51:18,889 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['register_date', 'modified_at', 'call_time']
+2026-01-30 15:51:18,917 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\calls.parquet
+2026-01-30 15:51:18,917 - clientify_etl - INFO - 
+ Procesando: companies.csv 
+2026-01-30 15:51:18,961 - clientify_etl - INFO - 🔄 Iniciando limpieza para: companies
+2026-01-30 15:51:18,963 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['picture_url', 'facebook_url', 'linkedin_url', 'twitter_url']
+2026-01-30 15:51:19,027 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['last_viewed', 'last_interaction', 'created', 'modified']
+2026-01-30 15:51:19,048 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\companies.parquet
+2026-01-30 15:51:19,049 - clientify_etl - INFO - 
+ Procesando: contacts.csv 
+2026-01-30 15:51:19,099 - clientify_etl - INFO - 🔄 Iniciando limpieza para: contacts
+2026-01-30 15:51:19,132 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\contacts.parquet
+2026-01-30 15:51:19,132 - clientify_etl - INFO - 
+ Procesando: deals.csv 
+2026-01-30 15:51:19,194 - clientify_etl - INFO - Aplicando limpieza específica para deals
+2026-01-30 15:51:19,302 - clientify_etl - INFO - [deals] Procesando columna custom_fields
+2026-01-30 15:51:19,335 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:51:21,138 - clientify_etl - INFO - [deals] Filas generadas en deals_custom: 2579
+2026-01-30 15:51:21,163 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:51:21,178 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_desanidado.parquet
+2026-01-30 15:51:21,178 - clientify_etl - INFO - 
+ Procesando: deals_pipelines.csv 
+2026-01-30 15:51:21,180 - clientify_etl - INFO - 🔄 Iniciando limpieza para: deals_pipelines
+2026-01-30 15:51:21,183 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_pipelines.parquet
+2026-01-30 15:51:21,183 - clientify_etl - INFO - 
+ Procesando: deal_times.csv 
+2026-01-30 15:51:22,426 - clientify_etl - INFO - Aplicando limpieza específica para deal_times
+2026-01-30 15:51:36,064 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deal_times.parquet
+2026-01-30 15:51:36,065 - clientify_etl - INFO - 
+ Procesando: pipelines_stages.csv 
+2026-01-30 15:51:36,070 - clientify_etl - INFO - 🔄 Iniciando limpieza para: pipelines_stages
+2026-01-30 15:51:36,074 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\pipelines_stages.parquet
+2026-01-30 15:51:36,074 - clientify_etl - INFO - 
+ Procesando: tasks.csv 
+2026-01-30 15:51:36,147 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks
+2026-01-30 15:51:36,150 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['additional_option', 'location', 'guest_users', 'tags', 'type_desc']
+2026-01-30 15:51:36,246 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['deals', 'task_type', 'task_stage', 'related_companies']
+2026-01-30 15:51:36,324 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['start_datetime', 'end_datetime', 'due_date', 'created_at', 'created', 'modified', 'completed_date']
+2026-01-30 15:51:36,363 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks.parquet
+2026-01-30 15:51:36,363 - clientify_etl - INFO - 
+ Procesando: tasks_types.csv 
+2026-01-30 15:51:36,366 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks_types
+2026-01-30 15:51:36,369 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks_types.parquet
+2026-01-30 15:51:36,369 - clientify_etl - INFO - 
+ Procesando: users.csv 
+2026-01-30 15:51:36,372 - clientify_etl - INFO - Aplicando limpieza específica para users
+2026-01-30 15:51:36,375 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\users.parquet
+2026-01-30 15:51:36,376 - clientify_etl - INFO - 
+Limpieza completada.
+2026-01-30 15:51:36,377 - clientify_etl - INFO - Proceso ETL completado.
+2026-01-30 15:55:53,666 - clientify_etl - INFO - 📁 Archivos log en: C:\Users\bi\Documents\etl_clientify\log\etl.log
+2026-01-30 15:55:53,667 - clientify_etl - INFO - 
+🔄 Transformando deal_times...
+2026-01-30 15:55:59,483 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/deal_times.csv (29394 registros)
+2026-01-30 15:55:59,504 - clientify_etl - INFO - ✅ deal_times procesado y guardado.
+2026-01-30 15:55:59,526 - clientify_etl - INFO - 
+ 🛠️Iniciando transfomraciones en: data/raw
+2026-01-30 15:55:59,527 - clientify_etl - INFO - 
+ Procesando: calls.csv 
+2026-01-30 15:55:59,537 - clientify_etl - INFO - Aplicando limpieza específica para calls
+2026-01-30 15:55:59,538 - clientify_etl - INFO - 🔄 Iniciando limpieza para: calls
+2026-01-30 15:55:59,538 - clientify_etl - INFO - 🗑 Columnas eliminadas: []
+2026-01-30 15:55:59,560 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['audio_url', 'integration_id', 'related_companies', 'related_deals', 'related_contacts']
+2026-01-30 15:55:59,566 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['register_date', 'modified_at', 'call_time']
+2026-01-30 15:55:59,588 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\calls.parquet
+2026-01-30 15:55:59,588 - clientify_etl - INFO - 
+ Procesando: companies.csv 
+2026-01-30 15:55:59,633 - clientify_etl - INFO - 🔄 Iniciando limpieza para: companies
+2026-01-30 15:55:59,634 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['picture_url', 'facebook_url', 'linkedin_url', 'twitter_url']
+2026-01-30 15:55:59,702 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['last_viewed', 'last_interaction', 'created', 'modified']
+2026-01-30 15:55:59,728 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\companies.parquet
+2026-01-30 15:55:59,728 - clientify_etl - INFO - 
+ Procesando: contacts.csv 
+2026-01-30 15:55:59,777 - clientify_etl - INFO - 🔄 Iniciando limpieza para: contacts
+2026-01-30 15:55:59,817 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\contacts.parquet
+2026-01-30 15:55:59,817 - clientify_etl - INFO - 
+ Procesando: deals.csv 
+2026-01-30 15:55:59,888 - clientify_etl - INFO - Aplicando limpieza específica para deals
+2026-01-30 15:55:59,982 - clientify_etl - INFO - [deals] Procesando columna custom_fields
+2026-01-30 15:56:00,009 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:56:01,911 - clientify_etl - INFO - [deals] Filas generadas en deals_custom: 2579
+2026-01-30 15:56:01,939 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:56:01,956 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_desanidado.parquet
+2026-01-30 15:56:01,956 - clientify_etl - INFO - 
+ Procesando: deals_pipelines.csv 
+2026-01-30 15:56:01,958 - clientify_etl - INFO - 🔄 Iniciando limpieza para: deals_pipelines
+2026-01-30 15:56:01,960 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_pipelines.parquet
+2026-01-30 15:56:01,960 - clientify_etl - INFO - 
+ Procesando: deal_times.csv 
+2026-01-30 15:56:03,305 - clientify_etl - INFO - Aplicando limpieza específica para deal_times
+2026-01-30 15:56:17,251 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deal_times.parquet
+2026-01-30 15:56:17,251 - clientify_etl - INFO - 
+ Procesando: pipelines_stages.csv 
+2026-01-30 15:56:17,257 - clientify_etl - INFO - 🔄 Iniciando limpieza para: pipelines_stages
+2026-01-30 15:56:17,261 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\pipelines_stages.parquet
+2026-01-30 15:56:17,261 - clientify_etl - INFO - 
+ Procesando: tasks.csv 
+2026-01-30 15:56:17,334 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks
+2026-01-30 15:56:17,337 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['additional_option', 'location', 'guest_users', 'tags', 'type_desc']
+2026-01-30 15:56:17,437 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['deals', 'task_type', 'task_stage', 'related_companies']
+2026-01-30 15:56:17,512 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['start_datetime', 'end_datetime', 'due_date', 'created_at', 'created', 'modified', 'completed_date']
+2026-01-30 15:56:17,553 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks.parquet
+2026-01-30 15:56:17,553 - clientify_etl - INFO - 
+ Procesando: tasks_types.csv 
+2026-01-30 15:56:17,558 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks_types
+2026-01-30 15:56:17,561 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks_types.parquet
+2026-01-30 15:56:17,562 - clientify_etl - INFO - 
+ Procesando: users.csv 
+2026-01-30 15:56:17,563 - clientify_etl - INFO - Aplicando limpieza específica para users
+2026-01-30 15:56:17,566 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\users.parquet
+2026-01-30 15:56:17,568 - clientify_etl - INFO - 
+Limpieza completada.
+2026-01-30 15:56:17,568 - clientify_etl - INFO - Proceso ETL completado.
+2026-01-30 15:56:44,641 - clientify_etl - INFO - 📁 Archivos log en: C:\Users\bi\Documents\etl_clientify\log\etl.log
+2026-01-30 15:56:44,643 - clientify_etl - INFO - 
+🔄 Transformando deal_times...
+2026-01-30 15:56:50,215 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/deal_times.csv (29394 registros)
+2026-01-30 15:56:50,249 - clientify_etl - INFO - ✅ deal_times procesado y guardado.
+2026-01-30 15:56:50,269 - clientify_etl - INFO - 
+ 🛠️Iniciando transfomraciones en: data/raw
+2026-01-30 15:56:50,269 - clientify_etl - INFO - 
+ Procesando: calls.csv 
+2026-01-30 15:56:50,287 - clientify_etl - INFO - Aplicando limpieza específica para calls
+2026-01-30 15:56:50,287 - clientify_etl - INFO - 🔄 Iniciando limpieza para: calls
+2026-01-30 15:56:50,288 - clientify_etl - INFO - 🗑 Columnas eliminadas: []
+2026-01-30 15:56:50,302 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['audio_url', 'integration_id', 'related_companies', 'related_deals', 'related_contacts']
+2026-01-30 15:56:50,315 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['register_date', 'modified_at', 'call_time']
+2026-01-30 15:56:50,329 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\calls.parquet
+2026-01-30 15:56:50,329 - clientify_etl - INFO - 
+ Procesando: companies.csv 
+2026-01-30 15:56:50,384 - clientify_etl - INFO - 🔄 Iniciando limpieza para: companies
+2026-01-30 15:56:50,385 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['picture_url', 'facebook_url', 'linkedin_url', 'twitter_url']
+2026-01-30 15:56:50,453 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['last_viewed', 'last_interaction', 'created', 'modified']
+2026-01-30 15:56:50,478 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\companies.parquet
+2026-01-30 15:56:50,478 - clientify_etl - INFO - 
+ Procesando: contacts.csv 
+2026-01-30 15:56:50,528 - clientify_etl - INFO - 🔄 Iniciando limpieza para: contacts
+2026-01-30 15:56:50,583 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\contacts.parquet
+2026-01-30 15:56:50,583 - clientify_etl - INFO - 
+ Procesando: deals.csv 
+2026-01-30 15:56:50,680 - clientify_etl - INFO - Aplicando limpieza específica para deals
+2026-01-30 15:56:50,781 - clientify_etl - INFO - [deals] Procesando columna custom_fields
+2026-01-30 15:56:50,815 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:56:52,569 - clientify_etl - INFO - [deals] Filas generadas en deals_custom: 2579
+2026-01-30 15:56:52,607 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:56:52,613 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_desanidado.parquet
+2026-01-30 15:56:52,613 - clientify_etl - INFO - 
+ Procesando: deals_pipelines.csv 
+2026-01-30 15:56:52,613 - clientify_etl - INFO - 🔄 Iniciando limpieza para: deals_pipelines
+2026-01-30 15:56:52,613 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_pipelines.parquet
+2026-01-30 15:56:52,613 - clientify_etl - INFO - 
+ Procesando: deal_times.csv 
+2026-01-30 15:56:53,915 - clientify_etl - INFO - Aplicando limpieza específica para deal_times
+2026-01-30 15:57:07,663 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deal_times.parquet
+2026-01-30 15:57:07,663 - clientify_etl - INFO - 
+ Procesando: pipelines_stages.csv 
+2026-01-30 15:57:07,663 - clientify_etl - INFO - 🔄 Iniciando limpieza para: pipelines_stages
+2026-01-30 15:57:07,682 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\pipelines_stages.parquet
+2026-01-30 15:57:07,683 - clientify_etl - INFO - 
+ Procesando: tasks.csv 
+2026-01-30 15:57:07,740 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks
+2026-01-30 15:57:07,740 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['additional_option', 'location', 'guest_users', 'tags', 'type_desc']
+2026-01-30 15:57:07,839 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['deals', 'task_type', 'task_stage', 'related_companies']
+2026-01-30 15:57:07,907 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['start_datetime', 'end_datetime', 'due_date', 'created_at', 'created', 'modified', 'completed_date']
+2026-01-30 15:57:07,961 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks.parquet
+2026-01-30 15:57:07,961 - clientify_etl - INFO - 
+ Procesando: tasks_types.csv 
+2026-01-30 15:57:07,962 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks_types
+2026-01-30 15:57:07,962 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks_types.parquet
+2026-01-30 15:57:07,962 - clientify_etl - INFO - 
+ Procesando: users.csv 
+2026-01-30 15:57:07,970 - clientify_etl - INFO - Aplicando limpieza específica para users
+2026-01-30 15:57:07,974 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\users.parquet
+2026-01-30 15:57:07,974 - clientify_etl - INFO - 
+Limpieza completada.
+2026-01-30 15:57:07,974 - clientify_etl - INFO - Proceso ETL completado.
+2026-01-30 15:58:03,821 - clientify_etl - INFO - 📁 Archivos log en: C:\Users\bi\Documents\etl_clientify\log\etl.log
+2026-01-30 15:58:03,821 - clientify_etl - INFO - 
+🔄 Transformando deal_times...
+2026-01-30 15:58:09,217 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/deal_times.csv (29394 registros)
+2026-01-30 15:58:09,240 - clientify_etl - INFO - ✅ deal_times procesado y guardado.
+2026-01-30 15:58:09,264 - clientify_etl - INFO - 
+ 🛠️Iniciando transfomraciones en: data/raw
+2026-01-30 15:58:09,265 - clientify_etl - INFO - 
+ Procesando: calls.csv 
+2026-01-30 15:58:09,275 - clientify_etl - INFO - Aplicando limpieza específica para calls
+2026-01-30 15:58:09,276 - clientify_etl - INFO - 🔄 Iniciando limpieza para: calls
+2026-01-30 15:58:09,276 - clientify_etl - INFO - 🗑 Columnas eliminadas: []
+2026-01-30 15:58:09,298 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['audio_url', 'integration_id', 'related_companies', 'related_deals', 'related_contacts']
+2026-01-30 15:58:09,303 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['register_date', 'modified_at', 'call_time']
+2026-01-30 15:58:09,325 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\calls.parquet
+2026-01-30 15:58:09,326 - clientify_etl - INFO - 
+ Procesando: companies.csv 
+2026-01-30 15:58:09,373 - clientify_etl - INFO - 🔄 Iniciando limpieza para: companies
+2026-01-30 15:58:09,374 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['picture_url', 'facebook_url', 'linkedin_url', 'twitter_url']
+2026-01-30 15:58:09,442 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['last_viewed', 'last_interaction', 'created', 'modified']
+2026-01-30 15:58:09,466 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\companies.parquet
+2026-01-30 15:58:09,466 - clientify_etl - INFO - 
+ Procesando: contacts.csv 
+2026-01-30 15:58:09,515 - clientify_etl - INFO - 🔄 Iniciando limpieza para: contacts
+2026-01-30 15:58:09,554 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\contacts.parquet
+2026-01-30 15:58:09,555 - clientify_etl - INFO - 
+ Procesando: deals.csv 
+2026-01-30 15:58:09,618 - clientify_etl - INFO - Aplicando limpieza específica para deals
+2026-01-30 15:58:09,710 - clientify_etl - INFO - [deals] Procesando columna custom_fields
+2026-01-30 15:58:09,736 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:58:11,441 - clientify_etl - INFO - [deals] Filas generadas en deals_custom: 2579
+2026-01-30 15:58:11,467 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:58:11,480 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_desanidado.parquet
+2026-01-30 15:58:11,481 - clientify_etl - INFO - 
+ Procesando: deals_pipelines.csv 
+2026-01-30 15:58:11,484 - clientify_etl - INFO - 🔄 Iniciando limpieza para: deals_pipelines
+2026-01-30 15:58:11,486 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_pipelines.parquet
+2026-01-30 15:58:11,487 - clientify_etl - INFO - 
+ Procesando: deal_times.csv 
+2026-01-30 15:58:12,746 - clientify_etl - INFO - Aplicando limpieza específica para deal_times
+2026-01-30 15:58:26,782 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deal_times.parquet
+2026-01-30 15:58:26,783 - clientify_etl - INFO - 
+ Procesando: pipelines_stages.csv 
+2026-01-30 15:58:26,788 - clientify_etl - INFO - 🔄 Iniciando limpieza para: pipelines_stages
+2026-01-30 15:58:26,790 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\pipelines_stages.parquet
+2026-01-30 15:58:26,791 - clientify_etl - INFO - 
+ Procesando: tasks.csv 
+2026-01-30 15:58:26,865 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks
+2026-01-30 15:58:26,868 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['additional_option', 'location', 'guest_users', 'tags', 'type_desc']
+2026-01-30 15:58:26,969 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['deals', 'task_type', 'task_stage', 'related_companies']
+2026-01-30 15:58:27,046 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['start_datetime', 'end_datetime', 'due_date', 'created_at', 'created', 'modified', 'completed_date']
+2026-01-30 15:58:27,084 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks.parquet
+2026-01-30 15:58:27,084 - clientify_etl - INFO - 
+ Procesando: tasks_types.csv 
+2026-01-30 15:58:27,088 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks_types
+2026-01-30 15:58:27,091 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks_types.parquet
+2026-01-30 15:58:27,091 - clientify_etl - INFO - 
+ Procesando: users.csv 
+2026-01-30 15:58:27,094 - clientify_etl - INFO - Aplicando limpieza específica para users
+2026-01-30 15:58:27,097 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\users.parquet
+2026-01-30 15:58:27,099 - clientify_etl - INFO - 
+Limpieza completada.
+2026-01-30 15:58:27,100 - clientify_etl - INFO - Proceso ETL completado.
+2026-01-30 15:59:38,866 - clientify_etl - INFO - 📁 Archivos log en: C:\Users\bi\Documents\etl_clientify\log\etl.log
+2026-01-30 15:59:38,867 - clientify_etl - INFO - 
+🔄 Transformando deal_times...
+2026-01-30 15:59:44,156 - clientify_etl - INFO - ✅ Guardado en CSV: C:\Users\bi\Documents\etl_clientify\data\raw/deal_times.csv (29394 registros)
+2026-01-30 15:59:44,178 - clientify_etl - INFO - ✅ deal_times procesado y guardado.
+2026-01-30 15:59:44,201 - clientify_etl - INFO - 
+ 🛠️Iniciando transfomraciones en: data/raw
+2026-01-30 15:59:44,202 - clientify_etl - INFO - 
+ Procesando: calls.csv 
+2026-01-30 15:59:44,212 - clientify_etl - INFO - Aplicando limpieza específica para calls
+2026-01-30 15:59:44,212 - clientify_etl - INFO - 🔄 Iniciando limpieza para: calls
+2026-01-30 15:59:44,213 - clientify_etl - INFO - 🗑 Columnas eliminadas: []
+2026-01-30 15:59:44,235 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['audio_url', 'integration_id', 'related_companies', 'related_deals', 'related_contacts']
+2026-01-30 15:59:44,242 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['register_date', 'modified_at', 'call_time']
+2026-01-30 15:59:44,265 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\calls.parquet
+2026-01-30 15:59:44,266 - clientify_etl - INFO - 
+ Procesando: companies.csv 
+2026-01-30 15:59:44,312 - clientify_etl - INFO - 🔄 Iniciando limpieza para: companies
+2026-01-30 15:59:44,314 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['picture_url', 'facebook_url', 'linkedin_url', 'twitter_url']
+2026-01-30 15:59:44,389 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['last_viewed', 'last_interaction', 'created', 'modified']
+2026-01-30 15:59:44,414 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\companies.parquet
+2026-01-30 15:59:44,414 - clientify_etl - INFO - 
+ Procesando: contacts.csv 
+2026-01-30 15:59:44,464 - clientify_etl - INFO - 🔄 Iniciando limpieza para: contacts
+2026-01-30 15:59:44,494 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\contacts.parquet
+2026-01-30 15:59:44,494 - clientify_etl - INFO - 
+ Procesando: deals.csv 
+2026-01-30 15:59:44,557 - clientify_etl - INFO - Aplicando limpieza específica para deals
+2026-01-30 15:59:44,654 - clientify_etl - INFO - [deals] Procesando columna custom_fields
+2026-01-30 15:59:44,679 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:59:46,581 - clientify_etl - INFO - [deals] Filas generadas en deals_custom: 2579
+2026-01-30 15:59:46,608 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals.parquet
+2026-01-30 15:59:46,623 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_desanidado.parquet
+2026-01-30 15:59:46,623 - clientify_etl - INFO - 
+ Procesando: deals_pipelines.csv 
+2026-01-30 15:59:46,627 - clientify_etl - INFO - 🔄 Iniciando limpieza para: deals_pipelines
+2026-01-30 15:59:46,630 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deals_pipelines.parquet
+2026-01-30 15:59:46,630 - clientify_etl - INFO - 
+ Procesando: deal_times.csv 
+2026-01-30 15:59:47,960 - clientify_etl - INFO - Aplicando limpieza específica para deal_times
+2026-01-30 16:00:01,686 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\deal_times.parquet
+2026-01-30 16:00:01,686 - clientify_etl - INFO - 
+ Procesando: pipelines_stages.csv 
+2026-01-30 16:00:01,692 - clientify_etl - INFO - 🔄 Iniciando limpieza para: pipelines_stages
+2026-01-30 16:00:01,698 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\pipelines_stages.parquet
+2026-01-30 16:00:01,698 - clientify_etl - INFO - 
+ Procesando: tasks.csv 
+2026-01-30 16:00:01,772 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks
+2026-01-30 16:00:01,775 - clientify_etl - INFO - 🗑 Columnas eliminadas: ['additional_option', 'location', 'guest_users', 'tags', 'type_desc']
+2026-01-30 16:00:01,873 - clientify_etl - INFO - 🔢 Columnas numéricas limpiadas: ['deals', 'task_type', 'task_stage', 'related_companies']
+2026-01-30 16:00:01,951 - clientify_etl - INFO - 📅 Columnas fecha/hora separadas: ['start_datetime', 'end_datetime', 'due_date', 'created_at', 'created', 'modified', 'completed_date']
+2026-01-30 16:00:01,994 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks.parquet
+2026-01-30 16:00:01,995 - clientify_etl - INFO - 
+ Procesando: tasks_types.csv 
+2026-01-30 16:00:01,999 - clientify_etl - INFO - 🔄 Iniciando limpieza para: tasks_types
+2026-01-30 16:00:02,003 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\tasks_types.parquet
+2026-01-30 16:00:02,003 - clientify_etl - INFO - 
+ Procesando: users.csv 
+2026-01-30 16:00:02,005 - clientify_etl - INFO - Aplicando limpieza específica para users
+2026-01-30 16:00:02,008 - clientify_etl - INFO - ✅ Guardado: C:\Users\bi\Documents\etl_clientify\data\stage\users.parquet
+2026-01-30 16:00:02,009 - clientify_etl - INFO - 
+Limpieza completada.
+2026-01-30 16:00:02,009 - clientify_etl - INFO - Proceso ETL completado.

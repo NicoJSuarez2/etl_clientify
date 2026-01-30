@@ -43,9 +43,14 @@ def run_extract_times(logger):
     Función específica para extraer y guardar los tiempos de los deals.
     """
     logger.info(f"\n🔄 Transformando deal_times...")
+<<<<<<< HEAD
     #df_times = extraccion_tiempos(logger)
     df_times = pd.read_csv(r"C:\Users\bi\Documents\etl_clientify\data\raw\deal_times.csv")
     df_times = transform_dataset(df_times, "deal_times")
+=======
+    df_times = extraccion_tiempos(logger)
+    transform_dataset(df_times, "deal_times")
+>>>>>>> 335baf0587d043bb93ec22e59ed14100ace80c42
     load_to_csv(logger, df_times, "deal_times")
     logger.info(f"✅ deal_times procesado y guardado.")
 
@@ -80,12 +85,17 @@ if __name__ == "__main__":
         run_load(logger)
 
     elif modo == "2":
+<<<<<<< HEAD
         #run_extract(logger, full_load=True)
+=======
+        run_extract(logger, full_load=False)
+>>>>>>> 335baf0587d043bb93ec22e59ed14100ace80c42
         run_extract_times(logger)
         run_transform(logger)
         #run_load(logger)
 
     elif modo == "3":
+        run_extract_times(logger)
         run_transform(logger)
         run_load(logger)
 

@@ -21,7 +21,7 @@ def create_db_engine(db_config):
     """Crear un engine de SQLAlchemy para SQL Server usando pyodbc."""
     params = urllib.parse.quote_plus(
         f"DRIVER={{ODBC Driver 18 for SQL Server}};"
-        f"SERVER={db_config['server']},1433;"
+        f"SERVER={db_config['server']};"
         f"DATABASE={db_config['database']};"
         f"UID={db_config['username']};"
         f"PWD={db_config['password']};"

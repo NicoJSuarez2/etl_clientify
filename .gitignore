@@ -7,6 +7,5 @@ data/stage/*.parquet
 .venv
 *.log
 data
-log
 
 # Ignore all files in data/process except .gitkeep

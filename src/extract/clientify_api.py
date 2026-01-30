@@ -19,15 +19,15 @@ def config():
 
     # Endpoints principales
     endpoints = {
-        #"contacts": "/contacts/",
-        #"companies": "/companies/",
-        #"deals": "/deals/",
-        #"calls": "/calls/",
-        #"tasks": "/tasks/",
+        "contacts": "/contacts/",
+        "companies": "/companies/",
+        "deals": "/deals/",
+        "calls": "/calls/",
+        "tasks": "/tasks/",
         "users": "/users/",
-        #"pipelines_stages": "/deals/pipelines/stages/",
-        #"tasks/types": "/tasks/types/",
-        #"deals_pipelines": "/deals/pipelines/",
+        "pipelines_stages": "/deals/pipelines/stages/",
+        "tasks/types": "/tasks/types/",
+        "deals_pipelines": "/deals/pipelines/",
     }
     return BASE_URL, headers, endpoints
 
@@ -186,7 +186,7 @@ def extraccion_tiempos(logger) -> pd.DataFrame:
                 r["deal_id"] = deal_id
                 all_results.append(r)
 
-        time.sleep(0.5)
+        time.sleep(0.3)
 
     df = pd.json_normalize(all_results) if all_results else pd.DataFrame()
 

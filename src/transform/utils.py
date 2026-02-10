@@ -289,6 +289,58 @@ def expand_stage_durations(
     return pd.DataFrame(registros)
 
 
+def obtener_path_parquet(nombre: str) -> Path:
+    """
+    Retorna la ruta del parquet en data/stage
+    """
+
+    root = Path(__file__).resolve().parents[2]  # sube hasta etl_clientify
+
+    path = root / "data" / "stage" / f"{nombre}.parquet"
+
+    return path
+
+
+
+def upsert_parquet_por_id_stage(logger, df_new, nombre, id_col="id", stage_col="stage_name"):
+    """
+    Upsert incremental a parquet histórico usando id + stage_name como clave.
+    Reemplaza los registros que ya existen y agrega los nuevos.
+    """
+    path = obtener_path_parquet(nombre)
+
+    # Asegurarse que los IDs y stages sean strings
+    df_new[id_col] = df_new[id_col].astype(str)
+    df_new[stage_col] = df_new[stage_col].astype(str)
+
+    if path.exists():
+        logger.info("📦 Leyendo parquet histórico")
+        df_old = pd.read_parquet(path)
+
+        # Convertir también los IDs y stages antiguos a string
+        df_old[id_col] = df_old[id_col].astype(str)
+        df_old[stage_col] = df_old[stage_col].astype(str)
+
+        logger.info(f"📊 Registros en histórico: {len(df_old)}")
+
+        # Construir una máscara para eliminar solo los registros que tienen la misma combinación de id+stage
+        mask = df_old.apply(lambda row: ((row[id_col], row[stage_col]) 
+                                         in zip(df_new[id_col], df_new[stage_col])), axis=1)
+
+        df_old_to_keep = df_old[~mask]
+
+        logger.info(f"♻️ Reemplazando registros existentes por id+stage")
+        logger.info(f"📊 Registros a mantener: {len(df_old_to_keep)}")
+
+        # Concatenar los registros antiguos que se mantienen con los nuevos
+        df_final = pd.concat([df_old_to_keep, df_new], ignore_index=True)
+        logger.info(f"📊 Registros finales después de upsert: {len(df_final)}")
+    else:
+        logger.info("🆕 No existe parquet — creando nuevo")
+        df_final = df_new
+
+    guardar_parquet(logger, df_final, nombre)
+
 def limpiezas_especificas(logger, df: pd.DataFrame, nombre: str) -> pd.DataFrame:
     """Aplica limpiezas específicas según el name de DataFrame."""
 
@@ -376,9 +428,20 @@ def limpiar_archivos(logger):
             # df = limpieza_anidados(df) # Elimina comentarios
             guardar_parquet(logger, df, nombre)
         elif nombre == "deal_times":
+
             logger.info("Aplicando limpieza específica para deal_times")
-            df = expand_stage_durations(df, id_col="id", stages_col="stages_duration")
-            guardar_parquet(logger, df, nombre)
+
+            # Expande los stages y deduplica por id + stage_name
+            df_new = expand_stage_durations(
+                df,
+                id_col="id",
+                stages_col="stages_duration"
+            )
+
+            # Actualiza el parquet incrementalmente
+            upsert_parquet_por_id_stage(logger, df_new, nombre, id_col="id", stage_col="stage_name")
+
+
         elif nombre == "users":
             logger.info("Aplicando limpieza específica para users")
             guardar_parquet(logger, df, nombre)

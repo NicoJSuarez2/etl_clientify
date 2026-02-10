@@ -28,7 +28,7 @@ def load_to_csv(logger, df: pd.DataFrame, name: str, folder: Path = DATA_DIR, fu
             if Path(file_path).exists():
                 existing_df = pd.read_csv(file_path)
                 df = pd.concat([existing_df, df], ignore_index=True)
-                df = df.drop_duplicates(keep='last').reset_index(drop=True)
+                #df = df.drop_duplicates(keep='last').reset_index(drop=True)
             
             df.to_csv(file_path, index=False, encoding="utf-8-sig")
             logger.info(f"✅ Guardado en CSV: {file_path} ({len(df)} registros)")

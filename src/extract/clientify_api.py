@@ -7,7 +7,6 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
-
 def config():
 
     env_path = Path(__file__).resolve().parent.parent.parent / ".env"
@@ -105,36 +104,50 @@ def fetch_data(
     return pd.json_normalize(all_results) if all_results else pd.DataFrame()
 
 
-def listar_deals_id(logger) -> list:
+
+
+def listar_deals_id_incremental(logger, meses=2) -> list:
     """
-    Lee deals.csv y retorna los ID únicos
+    Lista IDs de deals modificados en los últimos N meses
     """
+
     deals_csv = (
-        Path(__file__).resolve().parent.parent.parent / "data" / "raw" / "deals.csv"
+        Path(__file__).resolve().parent.parent.parent
+        / "data"
+        / "raw"
+        / "deals.csv"
     )
 
-    # Validar que exista
     if not deals_csv.exists():
-        logger.warning(
-            f"⚠️ No existe el archivo: {deals_csv.name}. Se retorna lista vacía."
-        )
+        logger.warning(f"⚠️ No existe el archivo: {deals_csv.name}")
         return []
 
     try:
-        df = pd.read_csv(deals_csv)
+        df = pd.read_csv(deals_csv, parse_dates=["created"])
     except Exception as e:
-        logger.error(f"❌ Error leyendo {deals_csv.name}: {e}")
+        logger.error(f"❌ Error leyendo CSV: {e}")
         return []
 
-    # Validar que tenga columna id
     if "id" not in df.columns:
-        logger.warning(f"⚠️ El archivo {deals_csv.name} no contiene columna 'id'.")
+        logger.warning("⚠️ No existe columna id")
         return []
 
-    deal_ids = df["id"].dropna().unique().tolist()
+    if "created" not in df.columns:
+        logger.warning("⚠️ No existe columna updated_at — usando todos los IDs")
+        return df["id"].dropna().unique().tolist()
 
-    logger.info(f"📌 Se encontraron {len(deal_ids)} IDs")
+    # 🔹 filtro último mes
+    fecha_limite = pd.Timestamp.now(tz="UTC") - pd.DateOffset(months=meses)
+
+
+    df_recent = df[df["created"] >= fecha_limite]
+
+    deal_ids = df_recent["id"].dropna().unique().tolist()
+
+    logger.info(f"📌 IDs modificados últimos {meses} mes(es): {len(deal_ids)}")
+
     return deal_ids
+
 
 
 def extraccion_tiempos(logger) -> pd.DataFrame:
@@ -145,7 +158,7 @@ def extraccion_tiempos(logger) -> pd.DataFrame:
     BASE_URL = os.getenv("BASE_URL", "https://api.clientify.net/v1")
     _, headers, _ = config()
 
-    deal_ids = listar_deals_id(logger)
+    deal_ids = listar_deals_id_incremental(logger)
 
     # --- Manejo cuando no hay deals id --- #
     if not deal_ids:
@@ -158,9 +171,10 @@ def extraccion_tiempos(logger) -> pd.DataFrame:
     ids_no_encontrados = []
 
     for deal_id in deal_ids:
+        logger.info(f"⏳ Extrayendo tiempos para deal ID: {deal_id}...")
         url = f"{BASE_URL}/deals/{deal_id}"
         resp = requests.get(url, headers=headers)
-        logger.info(f"Fetching {url}")
+        
 
         # --- Manejo de errores HTTP --- #
         if resp.status_code == 404:

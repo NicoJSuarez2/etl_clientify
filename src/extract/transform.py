@@ -65,38 +65,67 @@ def drop_empty_columns(df: pd.DataFrame, threshold: float = 0.9) -> pd.DataFrame
         return df
     return df.dropna(axis=1, thresh=int(len(df) * (1 - threshold)))
 
-
 def expand_stage_durations(
-    df: pd.DataFrame, id_col: str = "id", stages_col: str = "stages_duration"
-):
+    df: pd.DataFrame,
+    id_col: str = "id",
+    stages_col: str = "stages_duration",
+) -> pd.DataFrame:
+    
     registros = []
 
     for _, row in df[[id_col, stages_col]].iterrows():
         id_value = row[id_col]
+        raw_stages = row[stages_col]
 
-        # Convertir string -> lista de diccionarios
-        try:
-            lista_stages = ast.literal_eval(row[stages_col])
-        except Exception:
+        # Saltar si viene vacío
+        if pd.isna(raw_stages):
             continue
 
-        # Recorrer cada diccionario dentro de la lista
+        # Convertir string → lista si es necesario
+        if isinstance(raw_stages, str):
+            try:
+                lista_stages = ast.literal_eval(raw_stages)
+            except Exception:
+                continue
+        else:
+            lista_stages = raw_stages
+
+        # Validar que sea lista
+        if not isinstance(lista_stages, list):
+            continue
+
+        # Expandir cada diccionario de la lista
         for item in lista_stages:
+            if not isinstance(item, dict):
+                continue
+
             dur = item.get("stage_duration", {})
-            registros.append(
-                {
-                    "id": id_value,
-                    "stage_name": item.get("stage_name", None),
-                    "days": dur.get("days", None),
-                    "hours": dur.get("hours", None),
-                    "minutes": dur.get("minutes", None),
-                }
-            )
+
+            days = dur.get("days") or 0
+            hours = dur.get("hours") or 0
+            minutes = dur.get("minutes") or 0
+
+            registros.append({
+                "id": id_value,
+                "stage_name": item.get("stage_name"),
+                "stage_position": item.get("stage_position"),
+                "days": days,
+                "hours": hours,
+                "minutes": minutes,
+                "total_days": round(
+                    float(days or 0)
+                    + float(hours or 0) / 24
+                    + float(minutes or 0) / 1440,
+                    2
+                ),
+            })
+
 
     return pd.DataFrame(registros)
 
 
-def transform_dataset(df: pd.DataFrame, dataset_name: str) -> pd.DataFrame:
+
+def transform_dataset(df: pd.DataFrame, dataset_name: str, logger) -> pd.DataFrame:
     """
     Aplica transformaciones específicas según el dataset.
     """
@@ -104,6 +133,7 @@ def transform_dataset(df: pd.DataFrame, dataset_name: str) -> pd.DataFrame:
         return df
 
     # Limpieza básica
+    logger.info("Aplicando limpieza básica: columnas, fechas, URLs...")
     df = clean_columns(df)
     df = normalize_dates(df)
     df = eliminar_url(df, col="url")
@@ -118,6 +148,7 @@ def transform_dataset(df: pd.DataFrame, dataset_name: str) -> pd.DataFrame:
             df["email"] = df["email"].str.lower().str.strip()
 
     if dataset_name == "deals_times":
+        logger.info("Aplicando limpieza específica para deals_times")
         df = expand_stage_durations(df, id_col="id", stages_col="stages_duration")
 
     return df

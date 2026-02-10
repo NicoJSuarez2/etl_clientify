@@ -15,7 +15,7 @@ def run_extract(logger, full_load: bool = True):
         logger.info(f"\n🔄 Transformando {name}...")
 
         try:
-            df_transformed = transform_dataset(df, name)
+            df_transformed = transform_dataset(df, name, logger)
 
             if df_transformed is None:
                 logger.info(f"⚠️ transform_dataset devolvió None para {name}, se omite.")
@@ -44,16 +44,16 @@ def run_extract_times(logger):
     """
     logger.info(f"\n🔄 Transformando deal_times...")
     df_times = extraccion_tiempos(logger)
-    transform_dataset(df_times, "deal_times")
-    load_to_csv(logger, df_times, "deal_times")
+    df_times_transformed = transform_dataset(df_times, "deal_times",logger)
+    load_to_csv(logger, df_times_transformed, "deal_times")
     logger.info(f"✅ deal_times procesado y guardado.")
 
 
 def run_transform(logger):
     """
-    Función principal para cargar y limpiar archivos CSV en una carpeta dada.
+    Función principal para transofmar los archivos del antes de cargarlo  al csv
     """
-    logger.info(f"\n 🛠️Iniciando transfomraciones en: data/raw")
+    logger.info(f"\n 🛠️Iniciando transformaciones en: data/raw")
     limpiar_archivos(logger)
     logger.info("\nLimpieza completada.")
 
@@ -79,6 +79,7 @@ if __name__ == "__main__":
         run_load(logger)
 
     elif modo == "2":
+
         run_extract(logger, full_load=False)
         run_extract_times(logger)
         run_transform(logger)

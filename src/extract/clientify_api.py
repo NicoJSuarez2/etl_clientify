@@ -68,7 +68,7 @@ def fetch_data(
     """
 
     params = {}
-    #params["created[gte]"] = load_incremental_fecha(logger)
+    params["created[gte]"] = load_incremental_fecha(logger)
     BASE_URL, headers, _ = config()
     url = f"{BASE_URL}{endpoint}"
     all_results = []

@@ -16634,3 +16634,5 @@ Carga completada.
 2026-02-23 10:32:24,560 - clientify_etl - INFO - 💾 Fecha actual guardada: 2026-02-23T15:32
 2026-02-23 10:32:24,562 - clientify_etl - INFO - ⚠️ tasks/types vacío, se omite.
 2026-02-23 10:32:24,563 - clientify_etl - INFO - 📡 Extrayendo deals_pipelines...
+2026-02-23 11:06:46,086 - clientify_etl - INFO - 📁 Archivos log en: C:\Users\sistemas\Documents\elts\etl_clientify\log\etl.log
+2026-02-23 11:08:26,580 - clientify_etl - INFO - 📁 Archivos log en: C:\Users\sistemas\Documents\elts\etl_clientify\log\etl.log

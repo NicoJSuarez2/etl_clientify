@@ -4,7 +4,7 @@ from src.extract.transform import transform_dataset
 from src.extract.load import load_to_csv
 from src.transform.utils import *
 from src.load.load import ejecucion_carga
-from test import test_api
+from test.test_api import test_api
 import sys
 
 

@@ -106,7 +106,7 @@ def fetch_data(
 
 
 
-def listar_deals_id_incremental(logger, meses=2) -> list:
+def listar_deals_id_incremental(logger, meses=1) -> list:
     """
     Lista IDs de deals modificados en los últimos N meses
     """

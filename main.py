@@ -4,6 +4,7 @@ from src.extract.transform import transform_dataset
 from src.extract.load import load_to_csv
 from src.transform.utils import *
 from src.load.load import ejecucion_carga
+from test import test_api
 import sys
 
 
@@ -72,22 +73,24 @@ if __name__ == "__main__":
     modo = sys.argv[1] if len(sys.argv) > 1 else "full"
 
     logger = config_logger()
+    if test_api():
+        print("🚀 Continuing execution...")
+        if modo == "1":
+            run_extract(logger, full_load=False)
+            run_transform(logger)
+            run_load(logger)
 
-    if modo == "1":
-        run_extract(logger, full_load=False)
-        run_transform(logger)
-        run_load(logger)
+        elif modo == "2":
 
-    elif modo == "2":
+            run_extract(logger, full_load=False)
+            run_extract_times(logger)
+            run_transform(logger)
+            run_load(logger)
 
-        run_extract(logger, full_load=False)
-        run_extract_times(logger)
-        run_transform(logger)
-        run_load(logger)
-
-    elif modo == "3":
-        run_extract_times(logger)
-        run_transform(logger)
-        run_load(logger)
-
+        elif modo == "3":
+            run_extract_times(logger)
+            run_transform(logger)
+            run_load(logger)
+    else:
+        print("⛔ Execution stopped due to API failure.")
     logger.info("Proceso ETL completado.")

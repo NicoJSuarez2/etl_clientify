@@ -4,7 +4,7 @@ from src.extract.transform import transform_dataset
 from src.extract.load import load_to_csv
 from src.transform.utils import *
 from src.load.load import ejecucion_carga
-from test.test_api import test_api
+from test.test_api import *
 import sys
 
 
@@ -37,6 +37,7 @@ def run_extract(logger, full_load: bool = True):
 
         except Exception as e:
             logger.info(f"❌ Error procesando {name}: {e}")
+            enviar_alerta(f"Error procesando {name}: {e}", works=False)
 
 
 def run_extract_times(logger):
@@ -44,9 +45,14 @@ def run_extract_times(logger):
     Función específica para extraer y guardar los tiempos de los deals.
     """
     logger.info(f"\n🔄 Transformando deal_times...")
-    df_times = extraccion_tiempos(logger)
-    df_times_transformed = transform_dataset(df_times, "deal_times",logger)
-    load_to_csv(logger, df_times_transformed, "deal_times")
+    try:
+        df_times = extraccion_tiempos(logger)
+        df_times_transformed = transform_dataset(df_times, "deal_times",logger)
+        load_to_csv(logger, df_times_transformed, "deal_times")
+    
+    except Exception as e:
+        logger.info(f"❌ Error procesando deal_times: {e}")
+        enviar_alerta(f"Error procesando deal_times: {e}", works=False)
     logger.info(f"✅ deal_times procesado y guardado.")
 
 
@@ -55,16 +61,23 @@ def run_transform(logger):
     Función principal para transofmar los archivos del antes de cargarlo  al csv
     """
     logger.info(f"\n 🛠️Iniciando transformaciones en: data/raw")
-    limpiar_archivos(logger)
-    logger.info("\nLimpieza completada.")
+    try:
+        limpiar_archivos(logger)
+        logger.info("\nLimpieza completada.")
+    except Exception as e:
+        logger.info(f"❌ Error en run_transform: {e}")
+        enviar_alerta(f"Error en transformación (run_transform): {e}", works=False)
 
 def run_load(logger):
-    """
-    Función principal para cargar archivos Parquet desde data/stage a la base de datos SQL.
-    """
-    logger.info(f"\n📤Iniciando carga de datos a la base de datos SQL...")
-    ejecucion_carga(logger)
-    logger.info("\nCarga completada.")
+    logger.info("\n📤 Iniciando carga de datos a la base de datos SQL...")
+    try:
+        ejecucion_carga(logger)
+        logger.info("\nCarga completada.")
+        enviar_alerta(f"ETL ejecutado con éxito", works=True)
+    except Exception as e:
+        logger.info(f"❌ Error en run_load: {e}")
+        enviar_alerta(f"Error en carga SQL (run_load): {e}", works=False)
+        
 
 # =============================
 # EJECUCIÓN
@@ -73,12 +86,13 @@ if __name__ == "__main__":
     modo = sys.argv[1] if len(sys.argv) > 1 else "full"
 
     logger = config_logger()
-    if test_api():
-        print("🚀 Continuing execution...")
+    if test_api(logger):
+        logger.info("🚀 start execution...")
         if modo == "1":
             run_extract(logger, full_load=False)
             run_transform(logger)
             run_load(logger)
+            
 
         elif modo == "2":
 
@@ -86,11 +100,14 @@ if __name__ == "__main__":
             run_extract_times(logger)
             run_transform(logger)
             run_load(logger)
+            
 
         elif modo == "3":
             run_extract_times(logger)
             run_transform(logger)
             run_load(logger)
+            
     else:
-        print("⛔ Execution stopped due to API failure.")
-    logger.info("Proceso ETL completado.")
+        logger.info("⛔ Execution stopped due to API failure.")
+        enviar_alerta("ETL failed due to API failure", works=False)
+    logger.info("ETL finished.")
